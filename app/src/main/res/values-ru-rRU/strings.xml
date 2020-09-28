@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SMS my GPS</string>
+    <string name="app_version">Версия 1.0 (15)</string>
+
+    <string name="add_button">Добавить номер</string>
+    <string name="info_button">О приложении</string>
+
+    <string name="enable_service_switch">Активировать сервис</string>
+
+    <string name="sender_label">Номер отправителя должен заканчиваться на:</string>
+    <string name="sender_label_faq">Используйте только цифры без пробелов и других разделителей. Например: 291239845</string>
+    <string name="message_label">Сообщение отправителя должно начинаться на:</string>
+    <string name="last_known_location_checkbox">Отправлять последнее известное местоположение</string>
+    <string name="last_known_location_faq_label">Последнее известное местоположение может быть отправлено мгновенно, но может быть некорректным. Реальное местоположение все равно будет отправлено в течение нескольких минут.</string>
+    <string name="cancel_button">Закрыть</string>
+    <string name="delete_button">Удалить</string>
+    <string name="save_button">Сохранить</string>
+    <string name="send_button">Отправить</string>
+
+    <string name="error_missing_required_value">Ошибка: не заполнено необходимое поле</string>
+    <string name="error_add_list_item">Ошибка: не удалось добавить новое значение в список</string>
+
+    <string name="source_code_label"><a href="https://github.com">Исходный код</a> (лицензия GPL 2.0)</string>
+    <string name="based_on_label">На основе <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">проекта Уоррена Бэнка</a></string>
+    <string name="faq_label">Частые вопросы</string>
+    <string name="background_working_label">Приложение не работает в фоне</string>
+    <string name="background_working_faq_label">Из-за ограничений Android мы не можем гарантировать, что приложение всегда будет работать в фоновом режиме. Старайтесь не удалять его из списка недавних приложений. Убедитесь, что этому приложению разрешено работать в фоновом режиме (Настройки - Приложения). Отключите режим экономии заряда батареи.</string>
+    <string name="last_known_location_not_sent_label">Приложение не отправляет последнее известное местоположение</string>
+    <string name="last_known_location_not_sent_faq_label">Приложение может отправить последнее известное местоположение, только если система может его предоставить. Если Android не может предоставить последнее известное местоположение (например, потому что GPS был долго отключен), приложение ничего не отправит.</string>
+    <string name="privacy_policy_label">Политика конфиденциальности</string>
+    <string name="privacy_policy_faq_label">Приложение не собирает никаких данных. Для запросов местоположения используются службы местоположения Google. Их использование регулируется <a href="https://policies.google.com/technologies/location-data">Политикой конфиденциальности Google</a>.</string>
+    <string name="back_button">Назад</string>
+
+</resources>

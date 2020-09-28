@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SMS my GPS</string>
+    <string name="app_version">Версія 1.0 (15)</string>
+
+    <string name="add_button">Дадаць нумар</string>
+    <string name="info_button">Аб прыкладанні</string>
+
+    <string name="enable_service_switch">Уключыць сэрвіс</string>
+
+    <string name="sender_label">Нумар адпраўніка павінен заканчвацца на:</string>
+    <string name="sender_label_faq">Выкарыстоўвайце толькі лічбы без прабелаў ці іншых падзяляльнікаў. Напрыклад: 291239845</string>
+    <string name="message_label">Паведамленне адпраўніка павінна пачынацца на:</string>
+    <string name="last_known_location_checkbox">Адпраўляць апошняе вядомае месцазнаходжанне</string>
+    <string name="last_known_location_faq_label">Апошняе вядомае месцазнаходжанне можа быць адпраўлена імгненна, але можа быць некарэктным. Рэальнае месцазнаходжанне ўсё гэтак жа будзе адпраўлена на працягу некалькіх хвілін.</string>
+    <string name="cancel_button">Зачыніць</string>
+    <string name="delete_button">Выдаліць</string>
+    <string name="save_button">Захаваць</string>
+    <string name="send_button">Адправіць</string>
+
+    <string name="error_missing_required_value">Памылка: не запоўнена неабходнае поле</string>
+    <string name="error_add_list_item">Памылка: не атрымалася дадаць новы запіс у спіс</string>
+
+    <string name="source_code_label"><a href="https://github.com">Зыходны код</a> (ліцэнзія GPL 2.0)</string>
+    <string name="based_on_label">На аснове <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">праекта Уорэна Бэнка</a></string>
+    <string name="faq_label">Частыя пытанні</string>
+    <string name="background_working_label">Прыкладанне не працуе ў фоне</string>
+    <string name="background_working_faq_label">З прычыны абмежаванняў Android мы не можам гарантаваць, што прыкладанне зможа заўсёды працаваць у фоне. Паспрабуйце не выдаляць яго са спіса апошніх праграм. Пераканайцеся, што яму дазволена працаваць у фонавым рэжыме (Налады - Прыкладанні). Адключыце рэжым эканоміі зараду.</string>
+    <string name="last_known_location_not_sent_label">Прыкладанне не адпраўляе апошняе вядомае месцазнаходжанне</string>
+    <string name="last_known_location_not_sent_faq_label">Прыкладанне можа адправіць апошняе вядомае месцазнаходжанне, толькі калі сістэма можа яго прадаставіць. Калі прыкладанне не зможа атрымаць ад Android апошняе вядомае месцазнаходжанне (напрыклад, таму што GPS быў доўга адключаны), яно нічога не адправіць.</string>
+    <string name="privacy_policy_label">Палітыка прыватнасці</string>
+    <string name="privacy_policy_faq_label">Прыкладанне не збірае ніякіх дадзеных. Для запытаў месцазнаходжання выкарыстоўваюцца службы месцазнаходжання Google. Іх выкарыстанне рэгулюецца <a href="https://policies.google.com/technologies/location-data">Палітыкай прыватнасці Google</a>.</string>
+    <string name="back_button">Назад</string>
+
+</resources>
