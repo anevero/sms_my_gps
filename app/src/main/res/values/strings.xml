@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Version 3.0 (16)</string>
+    <string name="app_version">Version 3.0.1 (17)</string>
 
     <string name="add_button">Add number</string>
     <string name="info_button">About</string>
@@ -21,7 +21,7 @@
     <string name="error_missing_required_value">Error: Missing Required Value</string>
     <string name="error_add_list_item">Error: Could not add new item to list</string>
 
-    <string name="source_code_label"><a href="https://github.com">Source code</a> (GPL 2.0 license)</string>
+    <string name="source_code_label"><a href="https://github.com/anevero/sms_my_gps">Source code</a> (GPL 2.0 license)</string>
     <string name="based_on_label">Based on <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">Warren Bank\'s project</a></string>
     <string name="faq_label">Frequently asked questions</string>
     <string name="background_working_label">The app doesn\'t work in background</string>

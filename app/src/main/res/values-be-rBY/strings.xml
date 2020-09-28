@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версія 3.0 (16)</string>
+    <string name="app_version">Версія 3.0.1 (17)</string>
 
     <string name="add_button">Дадаць нумар</string>
     <string name="info_button">Аб прыкладанні</string>
@@ -21,7 +21,7 @@
     <string name="error_missing_required_value">Памылка: не запоўнена неабходнае поле</string>
     <string name="error_add_list_item">Памылка: не атрымалася дадаць новы запіс у спіс</string>
 
-    <string name="source_code_label"><a href="https://github.com">Зыходны код</a> (ліцэнзія GPL 2.0)</string>
+    <string name="source_code_label"><a href="https://github.com/anevero/sms_my_gps">Зыходны код</a> (ліцэнзія GPL 2.0)</string>
     <string name="based_on_label">На аснове <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">праекта Уорэна Бэнка</a></string>
     <string name="faq_label">Частыя пытанні</string>
     <string name="background_working_label">Прыкладанне не працуе ў фоне</string>
