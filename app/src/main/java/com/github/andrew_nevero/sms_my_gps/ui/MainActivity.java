@@ -29,7 +29,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-  private static final String TAG = "PreferenceActivity";
+  private static final String TAG = "MainActivity";
 
   private SwitchCompat enableServiceSwitch;
 
@@ -200,7 +200,8 @@ public class MainActivity extends AppCompatActivity {
     final Dialog dialog = new Dialog(MainActivity.this, R.style.AppTheme);
     dialog.setContentView(R.layout.info_dialog);
 
-    final TextView sourceCodeLabel = dialog.findViewById(R.id.source_code_label);
+    final TextView sourceCodeLabel =
+            dialog.findViewById(R.id.source_code_label);
     sourceCodeLabel.setMovementMethod(LinkMovementMethod.getInstance());
 
     final TextView basedOnLabel = dialog.findViewById(R.id.based_on_label);

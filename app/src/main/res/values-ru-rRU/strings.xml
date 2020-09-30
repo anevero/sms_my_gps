@@ -9,7 +9,6 @@
     <string name="enable_service_switch">Активировать сервис</string>
 
     <string name="sender_label">Номер отправителя должен заканчиваться на:</string>
-    <string name="sender_label_faq">Используйте только цифры без пробелов и других разделителей. Например: 291239845</string>
     <string name="message_label">Сообщение отправителя должно начинаться на:</string>
     <string name="last_known_location_checkbox">Отправлять последнее известное местоположение</string>
     <string name="last_known_location_faq_label">Последнее известное местоположение может быть отправлено мгновенно, но может быть некорректным. Реальное местоположение все равно будет отправлено в течение нескольких минут.</string>

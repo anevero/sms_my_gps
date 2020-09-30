@@ -9,7 +9,6 @@
     <string name="enable_service_switch">Уключыць сэрвіс</string>
 
     <string name="sender_label">Нумар адпраўніка павінен заканчвацца на:</string>
-    <string name="sender_label_faq">Выкарыстоўвайце толькі лічбы без прабелаў ці іншых падзяляльнікаў. Напрыклад: 291239845</string>
     <string name="message_label">Паведамленне адпраўніка павінна пачынацца на:</string>
     <string name="last_known_location_checkbox">Адпраўляць апошняе вядомае месцазнаходжанне</string>
     <string name="last_known_location_faq_label">Апошняе вядомае месцазнаходжанне можа быць адпраўлена імгненна, але можа быць некарэктным. Рэальнае месцазнаходжанне ўсё гэтак жа будзе адпраўлена на працягу некалькіх хвілін.</string>

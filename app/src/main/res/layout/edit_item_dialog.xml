@@ -11,43 +11,39 @@
         android:layout_margin="16dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/sender_label"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sender_label" />
+            android:hint="@string/sender_label">
 
-        <EditText
-            android:id="@+id/sender_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number|textMultiLine"
-            android:maxLength="15" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sender_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="15" />
 
-        <TextView
-            android:id="@+id/sender_faq"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sender_label_faq" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/message_label"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/message_label" />
+            android:layout_marginTop="24dp"
+            android:hint="@string/message_label">
 
-        <EditText
-            android:id="@+id/message_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/message_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
             android:id="@+id/last_known_location_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:text="@string/last_known_location_checkbox" />
 
         <TextView
@@ -61,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:gravity="center"
             android:orientation="horizontal">
 

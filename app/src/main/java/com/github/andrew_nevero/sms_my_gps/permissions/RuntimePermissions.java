@@ -1,6 +1,7 @@
 package com.github.andrew_nevero.sms_my_gps.permissions;
 
 import android.app.Activity;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import java.util.ArrayList;
@@ -9,14 +10,21 @@ public final class RuntimePermissions {
   private static final int REQUEST_CODE = 0;
 
   public static boolean isEnabled(Activity activity) {
-    final String[] allNecessaryPermissions = new String[]{
-            "android.permission.SEND_SMS",
-            "android.permission.RECEIVE_SMS",
-            "android.permission.ACCESS_COARSE_LOCATION",
-            "android.permission.ACCESS_FINE_LOCATION"};
+    PackageInfo packageInfo;
+    try {
+      packageInfo = activity.getPackageManager().getPackageInfo(
+              activity.getPackageName(), PackageManager.GET_PERMISSIONS);
+    } catch (PackageManager.NameNotFoundException e) {
+      return false;
+    }
+
+    String[] requestedPermissions = packageInfo.requestedPermissions;
+    if (requestedPermissions == null) {
+      return true;
+    }
 
     ArrayList<String> permissionsToRequest = new ArrayList<>();
-    for (String permission_name : allNecessaryPermissions) {
+    for (String permission_name : requestedPermissions) {
       if (activity.checkSelfPermission(permission_name) !=
           PackageManager.PERMISSION_GRANTED) {
         permissionsToRequest.add(permission_name);

@@ -9,7 +9,6 @@
     <string name="enable_service_switch">Enable Service</string>
 
     <string name="sender_label">Sender must end with:</string>
-    <string name="sender_label_faq">Use only numbers without spaces or other spacers. For example: 291239845</string>
     <string name="message_label">Message must begin with:</string>
     <string name="last_known_location_checkbox">Send last known location</string>
     <string name="last_known_location_faq_label">Last known location can be sent immediately, but can be incorrect. The real location will still be sent within a few minutes.</string>
