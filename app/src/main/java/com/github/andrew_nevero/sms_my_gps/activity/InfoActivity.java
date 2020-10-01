@@ -1,4 +1,4 @@
-package com.github.andrew_nevero.sms_my_gps.ui;
+package com.github.andrew_nevero.sms_my_gps.activity;
 
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;

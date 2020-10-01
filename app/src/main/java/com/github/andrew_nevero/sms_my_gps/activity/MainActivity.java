@@ -1,14 +1,15 @@
-package com.github.andrew_nevero.sms_my_gps.ui;
+package com.github.andrew_nevero.sms_my_gps.activity;
 
 import com.github.andrew_nevero.sms_my_gps.R;
+import com.github.andrew_nevero.sms_my_gps.data.Constants;
 import com.github.andrew_nevero.sms_my_gps.data.ListItem;
 import com.github.andrew_nevero.sms_my_gps.data.Preferences;
 import com.github.andrew_nevero.sms_my_gps.events.SMSReceiver;
-import com.github.andrew_nevero.sms_my_gps.permissions.RuntimePermissions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,15 +24,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-  private static final String ITEM_ID_KEY = "item_id";
-  private static final String SENDER_KEY = "sender";
-  private static final String MESSAGE_KEY = "message";
-  private static final String LAST_KNOWN_LOCATION_KEY = "last_known_location";
-
-  private static final int EDIT_ITEM_REQUEST_CODE = 521;
-  private static final int EDIT_ITEM_RESULT_ADD_CODE = 522;
-  private static final int EDIT_ITEM_RESULT_REMOVE_CODE = 523;
-
   private SwitchCompat enableServiceSwitch;
 
   private ListView listView;
@@ -52,21 +44,17 @@ public class MainActivity extends AppCompatActivity {
             "android.provider.Telephony.SMS_RECEIVED"));
 
     enableServiceSwitch = findViewById(R.id.enable_service_switch);
-    if (RuntimePermissions.isEnabled(MainActivity.this)) {
-      enableServiceSwitch.setChecked(
-              Preferences.isEnabled(MainActivity.this));
-      enableServiceSwitch.setEnabled(true);
-      enableServiceSwitch.setClickable(true);
-      enableServiceSwitch.setOnClickListener(v -> Preferences
-              .setEnabled(MainActivity.this,
-                          enableServiceSwitch.isChecked()));
-    } else {
-      enableServiceSwitch.setChecked(false);
+    enableServiceSwitch.setOnClickListener(v -> Preferences
+            .setEnabled(MainActivity.this, enableServiceSwitch.isChecked()));
+
+    if (!areLocationAndSmsPermissionsGranted()) {
       enableServiceSwitch.setEnabled(false);
       enableServiceSwitch.setClickable(false);
-      if (Preferences.isEnabled(MainActivity.this)) {
-        Preferences.setEnabled(MainActivity.this, false);
-      }
+      enableServiceSwitch.setChecked(false);
+      Preferences.setEnabled(MainActivity.this, false);
+      requestLocationAndSmsPermissions();
+    } else {
+      enableServiceSwitch.setChecked(Preferences.isEnabled(MainActivity.this));
     }
 
     listView = findViewById(R.id.list_view);
@@ -91,13 +79,43 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+  private boolean areLocationAndSmsPermissionsGranted() {
+    for (String permission : Constants.LOCATION_AND_SMS_PERMISSIONS) {
+      if (checkSelfPermission(permission) !=
+          PackageManager.PERMISSION_GRANTED) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  private void requestLocationAndSmsPermissions() {
+    ArrayList<String> permissionsToRequest = new ArrayList<>();
+    for (String permission : Constants.LOCATION_AND_SMS_PERMISSIONS) {
+      if (checkSelfPermission(permission) !=
+          PackageManager.PERMISSION_GRANTED) {
+        permissionsToRequest.add(permission);
+      }
+    }
+
+    requestPermissions(permissionsToRequest.toArray(new String[0]),
+                       Constants.LOCATION_SMS_PERMISSIONS_REQUEST_CODE);
+  }
+
   @Override
   public void onRequestPermissionsResult(int requestCode,
                                          @NonNull String[] permissions,
                                          @NonNull int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    RuntimePermissions.onRequestPermissionsResult(
-            MainActivity.this, requestCode, permissions, grantResults);
+    if (requestCode == Constants.LOCATION_SMS_PERMISSIONS_REQUEST_CODE) {
+      for (int result : grantResults) {
+        if (result != PackageManager.PERMISSION_GRANTED) {
+          return;
+        }
+      }
+      recreate();
+    }
   }
 
   @Override
@@ -119,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
   protected void onActivityResult(int requestCode, int resultCode,
                                   @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == EDIT_ITEM_REQUEST_CODE) {
+    if (requestCode == Constants.EDIT_ITEM_REQUEST_CODE) {
       processEditActivityResult(resultCode, data);
     }
   }
@@ -128,19 +146,20 @@ public class MainActivity extends AppCompatActivity {
     final boolean needToAdd = (itemId < 0);
 
     Intent intent = new Intent(this, EditItemActivity.class);
-    intent.putExtra(ITEM_ID_KEY, itemId);
+    intent.putExtra(Constants.ITEM_ID_KEY, itemId);
     if (needToAdd) {
-      intent.putExtra(SENDER_KEY, "");
-      intent.putExtra(MESSAGE_KEY, "");
-      intent.putExtra(LAST_KNOWN_LOCATION_KEY, false);
+      intent.putExtra(Constants.SENDER_KEY, "");
+      intent.putExtra(Constants.MESSAGE_KEY, "");
+      intent.putExtra(Constants.LAST_KNOWN_LOCATION_KEY, false);
     } else {
       ListItem item = listItems.get(itemId);
-      intent.putExtra(SENDER_KEY, item.getSender());
-      intent.putExtra(MESSAGE_KEY, item.getMessagePrefix());
-      intent.putExtra(LAST_KNOWN_LOCATION_KEY, item.getSendLastKnownLocation());
+      intent.putExtra(Constants.SENDER_KEY, item.getSender());
+      intent.putExtra(Constants.MESSAGE_KEY, item.getMessagePrefix());
+      intent.putExtra(Constants.LAST_KNOWN_LOCATION_KEY,
+                      item.getSendLastKnownLocation());
     }
 
-    startActivityForResult(intent, EDIT_ITEM_REQUEST_CODE);
+    startActivityForResult(intent, Constants.EDIT_ITEM_REQUEST_CODE);
   }
 
   private void processEditActivityResult(int resultCode,
@@ -149,23 +168,23 @@ public class MainActivity extends AppCompatActivity {
       return;
     }
 
-    if (resultCode != EDIT_ITEM_RESULT_ADD_CODE &&
-        resultCode != EDIT_ITEM_RESULT_REMOVE_CODE) {
+    if (resultCode != Constants.EDIT_ITEM_ADD_RESULT_CODE &&
+        resultCode != Constants.EDIT_ITEM_REMOVE_RESULT_CODE) {
       return;
     }
 
-    int itemId = data.getIntExtra(ITEM_ID_KEY, -1);
+    int itemId = data.getIntExtra(Constants.ITEM_ID_KEY, -1);
 
-    if (resultCode == EDIT_ITEM_RESULT_REMOVE_CODE) {
+    if (resultCode == Constants.EDIT_ITEM_REMOVE_RESULT_CODE) {
       if (itemId == -1) {
         return;
       }
       listItems.remove(itemId);
     } else {
-      String sender = data.getStringExtra(SENDER_KEY);
-      String message = data.getStringExtra(MESSAGE_KEY);
+      String sender = data.getStringExtra(Constants.SENDER_KEY);
+      String message = data.getStringExtra(Constants.MESSAGE_KEY);
       boolean lastKnownLocation = data.getBooleanExtra(
-              LAST_KNOWN_LOCATION_KEY, false);
+              Constants.LAST_KNOWN_LOCATION_KEY, false);
 
       if (itemId == -1) {
         listItems.add(new ListItem("", "", false));

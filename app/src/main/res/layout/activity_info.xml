@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:orientation="vertical"
-    android:padding="8dp"
+    android:padding="16dp"
     android:theme="@style/AppTheme"
-    tools:context=".ui.InfoActivity">
+    tools:context=".activity.InfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

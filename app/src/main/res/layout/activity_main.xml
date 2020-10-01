@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:orientation="vertical"
-    android:padding="8dp"
+    android:padding="16dp"
     android:theme="@style/AppTheme"
-    tools:context=".ui.MainActivity">
+    tools:context=".activity.MainActivity">
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/enable_service_switch"
