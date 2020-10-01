@@ -7,29 +7,30 @@ import com.github.andrew_nevero.sms_my_gps.events.SMSReceiver;
 import com.github.andrew_nevero.sms_my_gps.permissions.RuntimePermissions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import android.app.Dialog;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-  private static final String TAG = "MainActivity";
+  private static final String ITEM_ID_KEY = "item_id";
+  private static final String SENDER_KEY = "sender";
+  private static final String MESSAGE_KEY = "message";
+  private static final String LAST_KNOWN_LOCATION_KEY = "last_known_location";
+
+  private static final int EDIT_ITEM_REQUEST_CODE = 521;
+  private static final int EDIT_ITEM_RESULT_ADD_CODE = 522;
+  private static final int EDIT_ITEM_RESULT_REMOVE_CODE = 523;
 
   private SwitchCompat enableServiceSwitch;
 
@@ -41,17 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
   private SMSReceiver smsReceiver;
 
-  private void handleDataSetChange() {
-    listAdapter.notifyDataSetChanged();
-    Preferences.setListItems(MainActivity.this, listItems);
-  }
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.main_activity);
+    setContentView(R.layout.activity_main);
 
-    Log.i(TAG, "Registering broadcast receiver");
     smsReceiver = new SMSReceiver();
     registerReceiver(smsReceiver, new IntentFilter(
             "android.provider.Telephony.SMS_RECEIVED"));
@@ -81,18 +76,17 @@ public class MainActivity extends AppCompatActivity {
                                      listItems);
     listView.setAdapter(listAdapter);
     listView.setOnItemClickListener((parent, view, position, id) -> {
-      showEditDialog(position);
+      startEditActivity(position);
     });
 
     plusButton = findViewById(R.id.plus_button);
-    plusButton.setOnClickListener(v -> showEditDialog(-1));
+    plusButton.setOnClickListener(v -> startEditActivity(-1));
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
     if (smsReceiver != null) {
-      Log.i(TAG, "Unregistering broadcast receiver");
       unregisterReceiver(smsReceiver);
     }
   }
@@ -108,112 +102,87 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.main_activity, menu);
+    getMenuInflater().inflate(R.menu.activity_main, menu);
     return true;
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem menuItem) {
     if (menuItem.getItemId() == R.id.info_menu) {
-      showInfoDialog();
+      startInfoActivity();
       return true;
     }
     return super.onOptionsItemSelected(menuItem);
   }
 
-  private void showEditDialog(final int position) {
-    final Dialog dialog = new Dialog(MainActivity.this, R.style.AppTheme);
-    dialog.setContentView(R.layout.edit_item_dialog);
-
-    final EditText senderInput = dialog.findViewById(R.id.sender_input);
-    final EditText messageInput = dialog.findViewById(R.id.message_input);
-    final CheckBox lastKnownLocationCheckbox =
-            dialog.findViewById(R.id.last_known_location_checkbox);
-
-    final Button deleteButton = dialog.findViewById(R.id.delete_button);
-    final Button saveButton = dialog.findViewById(R.id.save_button);
-
-    final boolean needToAdd = (position < 0);
-    final ListItem listItem = (needToAdd) ? new ListItem("", "", false)
-                                          : listItems.get(position);
-
-    senderInput.setText(listItem.getSender());
-    messageInput.setText(listItem.getMessagePrefix());
-    lastKnownLocationCheckbox.setChecked(listItem.getSendLastKnownLocation());
-
-    if (needToAdd) {
-      deleteButton.setText(R.string.cancel_button);
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode,
+                                  @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == EDIT_ITEM_REQUEST_CODE) {
+      processEditActivityResult(resultCode, data);
     }
-
-    deleteButton.setOnClickListener(v -> {
-      if (!needToAdd) {
-        listItems.remove(position);
-        handleDataSetChange();
-      }
-      dialog.dismiss();
-    });
-
-    saveButton.setOnClickListener(v -> {
-      final String newSender = senderInput.getText().toString().trim();
-      final String newMessagePrefix =
-              messageInput.getText().toString().trim();
-      final boolean newLastKnownLocation =
-              lastKnownLocationCheckbox.isChecked();
-
-      if (newSender.isEmpty() || newMessagePrefix.isEmpty()) {
-        Toast.makeText(MainActivity.this, getResources()
-                               .getString(R.string.error_missing_required_value),
-                       Toast.LENGTH_SHORT).show();
-        return;
-      }
-
-      final boolean sameSender = newSender.equals(listItem.getSender());
-      final boolean sameMessagePrefix =
-              newMessagePrefix.equals(listItem.getMessagePrefix());
-      final boolean sameLastKnownLocation =
-              (newLastKnownLocation == listItem.getSendLastKnownLocation());
-
-      if (sameSender && sameMessagePrefix && sameLastKnownLocation) {
-        dialog.dismiss();
-        return;
-      }
-
-      listItem.setSender(newSender);
-      listItem.setMessagePrefix(newMessagePrefix);
-      listItem.setSendLastKnownLocation(newLastKnownLocation);
-
-      if (needToAdd && !listItems.add(listItem)) {
-        Toast.makeText(MainActivity.this,
-                       getResources().getString(R.string.error_add_list_item),
-                       Toast.LENGTH_SHORT).show();
-        return;
-      }
-
-      handleDataSetChange();
-      dialog.dismiss();
-    });
-
-    dialog.show();
   }
 
-  private void showInfoDialog() {
-    final Dialog dialog = new Dialog(MainActivity.this, R.style.AppTheme);
-    dialog.setContentView(R.layout.info_dialog);
+  private void startEditActivity(int itemId) {
+    final boolean needToAdd = (itemId < 0);
 
-    final TextView sourceCodeLabel =
-            dialog.findViewById(R.id.source_code_label);
-    sourceCodeLabel.setMovementMethod(LinkMovementMethod.getInstance());
+    Intent intent = new Intent(this, EditItemActivity.class);
+    intent.putExtra(ITEM_ID_KEY, itemId);
+    if (needToAdd) {
+      intent.putExtra(SENDER_KEY, "");
+      intent.putExtra(MESSAGE_KEY, "");
+      intent.putExtra(LAST_KNOWN_LOCATION_KEY, false);
+    } else {
+      ListItem item = listItems.get(itemId);
+      intent.putExtra(SENDER_KEY, item.getSender());
+      intent.putExtra(MESSAGE_KEY, item.getMessagePrefix());
+      intent.putExtra(LAST_KNOWN_LOCATION_KEY, item.getSendLastKnownLocation());
+    }
 
-    final TextView basedOnLabel = dialog.findViewById(R.id.based_on_label);
-    basedOnLabel.setMovementMethod(LinkMovementMethod.getInstance());
+    startActivityForResult(intent, EDIT_ITEM_REQUEST_CODE);
+  }
 
-    final TextView privacyPolicyLabel =
-            dialog.findViewById(R.id.privacy_policy_faq_label);
-    privacyPolicyLabel.setMovementMethod(LinkMovementMethod.getInstance());
+  private void processEditActivityResult(int resultCode,
+                                         @Nullable Intent data) {
+    if (data == null) {
+      return;
+    }
 
-    final Button backButton = dialog.findViewById(R.id.back_button);
-    backButton.setOnClickListener(v -> dialog.dismiss());
+    if (resultCode != EDIT_ITEM_RESULT_ADD_CODE &&
+        resultCode != EDIT_ITEM_RESULT_REMOVE_CODE) {
+      return;
+    }
 
-    dialog.show();
+    int itemId = data.getIntExtra(ITEM_ID_KEY, -1);
+
+    if (resultCode == EDIT_ITEM_RESULT_REMOVE_CODE) {
+      if (itemId == -1) {
+        return;
+      }
+      listItems.remove(itemId);
+    } else {
+      String sender = data.getStringExtra(SENDER_KEY);
+      String message = data.getStringExtra(MESSAGE_KEY);
+      boolean lastKnownLocation = data.getBooleanExtra(
+              LAST_KNOWN_LOCATION_KEY, false);
+
+      if (itemId == -1) {
+        listItems.add(new ListItem("", "", false));
+        itemId = listItems.size() - 1;
+      }
+
+      ListItem item = listItems.get(itemId);
+      item.setSender(sender);
+      item.setMessagePrefix(message);
+      item.setSendLastKnownLocation(lastKnownLocation);
+    }
+
+    listAdapter.notifyDataSetChanged();
+    Preferences.setListItems(MainActivity.this, listItems);
+  }
+
+  private void startInfoActivity() {
+    startActivity(new Intent(this, InfoActivity.class));
   }
 }

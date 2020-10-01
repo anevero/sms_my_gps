@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версія 3.0.1 (17)</string>
+    <string name="app_version">Версія 3.1.0 Alpha (19)</string>
 
-    <string name="add_button">Дадаць нумар</string>
-    <string name="info_button">Аб прыкладанні</string>
+    <string name="add_item">Дадаць запіс</string>
+    <string name="edit_item">Рэдагаваць запіс</string>
+    <string name="info">Аб прыкладанні</string>
 
     <string name="enable_service_switch">Уключыць сэрвіс</string>
 
-    <string name="sender_label">Нумар адпраўніка павінен заканчвацца на:</string>
-    <string name="message_label">Паведамленне адпраўніка павінна пачынацца на:</string>
+    <string name="sender_label">Нумар павінен заканчвацца на:</string>
+    <string name="pick_contact_button">Выбраць кантакт…</string>
+    <string name="message_label">Паведамленне павінна пачынацца на:</string>
     <string name="last_known_location_checkbox">Адпраўляць апошняе вядомае месцазнаходжанне</string>
     <string name="last_known_location_faq_label">Апошняе вядомае месцазнаходжанне можа быць адпраўлена імгненна, але можа быць некарэктным. Рэальнае месцазнаходжанне ўсё гэтак жа будзе адпраўлена на працягу некалькіх хвілін.</string>
-    <string name="cancel_button">Зачыніць</string>
     <string name="delete_button">Выдаліць</string>
+    <string name="cancel_button">Зачыніць</string>
     <string name="save_button">Захаваць</string>
-    <string name="send_button">Адправіць</string>
-
-    <string name="error_missing_required_value">Памылка: не запоўнена неабходнае поле</string>
-    <string name="error_add_list_item">Памылка: не атрымалася дадаць новы запіс у спіс</string>
+    <string name="field_empty_label">Гэта поле не можа быць пустым</string>
 
     <string name="source_code_label"><a href="https://github.com/anevero/sms_my_gps">Зыходны код</a> (ліцэнзія GPL 2.0)</string>
     <string name="based_on_label">На аснове <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">праекта Уорэна Бэнка</a></string>

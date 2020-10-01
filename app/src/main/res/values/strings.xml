@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Version 3.0.1 (17)</string>
+    <string name="app_version">Version 3.1.0 Alpha (19)</string>
 
-    <string name="add_button">Add number</string>
-    <string name="info_button">About</string>
+    <string name="add_item">Add item</string>
+    <string name="edit_item">Edit item</string>
+    <string name="info">About</string>
 
     <string name="enable_service_switch">Enable Service</string>
 
     <string name="sender_label">Sender must end with:</string>
+    <string name="pick_contact_button">Choose a contact…</string>
     <string name="message_label">Message must begin with:</string>
     <string name="last_known_location_checkbox">Send last known location</string>
     <string name="last_known_location_faq_label">Last known location can be sent immediately, but can be incorrect. The real location will still be sent within a few minutes.</string>
-    <string name="cancel_button">Cancel</string>
     <string name="delete_button">Delete</string>
+    <string name="cancel_button">Cancel</string>
     <string name="save_button">Save</string>
-    <string name="send_button">Send</string>
-
-    <string name="error_missing_required_value">Error: Missing Required Value</string>
-    <string name="error_add_list_item">Error: Could not add new item to list</string>
+    <string name="field_empty_label">This field can\'t be empty</string>
 
     <string name="source_code_label"><a href="https://github.com/anevero/sms_my_gps">Source code</a> (GPL 2.0 license)</string>
     <string name="based_on_label">Based on <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">Warren Bank\'s project</a></string>

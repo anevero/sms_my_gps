@@ -6,6 +6,6 @@
     <item
         android:id="@+id/info_menu"
         android:icon="@drawable/ic_info_24"
-        android:title="@string/add_button"
+        android:title="@string/add_item"
         app:showAsAction="always" />
 </menu>

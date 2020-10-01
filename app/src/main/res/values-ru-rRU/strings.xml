@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версия 3.0.1 (17)</string>
+    <string name="app_version">Версия 3.1.0 Alpha (19)</string>
 
-    <string name="add_button">Добавить номер</string>
-    <string name="info_button">О приложении</string>
+    <string name="add_item">Добавить запись</string>
+    <string name="edit_item">Редактировать запись</string>
+    <string name="info">О приложении</string>
 
     <string name="enable_service_switch">Активировать сервис</string>
 
-    <string name="sender_label">Номер отправителя должен заканчиваться на:</string>
-    <string name="message_label">Сообщение отправителя должно начинаться на:</string>
+    <string name="sender_label">Номер должен заканчиваться на:</string>
+    <string name="pick_contact_button">Выбрать контакт…</string>
+    <string name="message_label">Сообщение должно начинаться на:</string>
     <string name="last_known_location_checkbox">Отправлять последнее известное местоположение</string>
     <string name="last_known_location_faq_label">Последнее известное местоположение может быть отправлено мгновенно, но может быть некорректным. Реальное местоположение все равно будет отправлено в течение нескольких минут.</string>
-    <string name="cancel_button">Закрыть</string>
     <string name="delete_button">Удалить</string>
+    <string name="cancel_button">Закрыть</string>
     <string name="save_button">Сохранить</string>
-    <string name="send_button">Отправить</string>
-
-    <string name="error_missing_required_value">Ошибка: не заполнено необходимое поле</string>
-    <string name="error_add_list_item">Ошибка: не удалось добавить новое значение в список</string>
+    <string name="field_empty_label">Это поле не может быть пустым</string>
 
     <string name="source_code_label"><a href="https://github.com/anevero/sms_my_gps">Исходный код</a> (лицензия GPL 2.0)</string>
     <string name="based_on_label">На основе <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">проекта Уоррена Бэнка</a></string>
