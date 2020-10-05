@@ -18,16 +18,20 @@ This fork is based on [Warren Bank's project](https://github.com/warren-bank/And
 design guidelines. Night theme is also supported now.
 - A lot of changes in the app's architecture. For example, "inline" dialogues
 have been replaced by special activities.
+- All the logic connected with listening to SMS broadcasts and sending the
+location has been moved to the foreground service to ensure that the
+application works properly in the background mode.
 - Google Location services are now used instead of the system location
 provider. The app now depends on Google Play Services but sends the location
 faster.
-- Ability to send last known location, which can be provided by the system
-almost immediately, has been added.
+- Ability to send last known location which can be provided by the system
+almost immediately has been added.
 - Contact picker feature has been added (to add the number by choosing a
 contact through the system provider).
 - The broadcast receiver is now registered at runtime, not in the manifest, to
 meet Android Oreo (and later) requirements for implicit receivers.
 - Some additional FAQs have been added to the app.
-- Ability to send and receive raw data SMS has been removed.
+- Ability to send and receive raw data SMS has been removed (it didn't work
+properly at least on some devices).
 - Minimum SDK level is now 23 (Android 6.0 Marshmallow). 
 - A lot of refactoring changes.
