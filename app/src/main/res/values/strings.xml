@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Version 3.1.0 (20)</string>
+    <string name="app_version">Version 3.2.0 (21)</string>
 
     <string name="add_item">Add item</string>
     <string name="edit_item">Edit item</string>
     <string name="info">About</string>
 
-    <string name="enable_service_switch">Enable Service</string>
+    <string name="enable_service_switch">Enable service</string>
+    <string name="service_running">Service is running</string>
+    <string name="service_channel">Service channel</string>
 
     <string name="sender_label">Sender must end with:</string>
     <string name="pick_contact_button">Choose a contact…</string>
@@ -23,9 +25,15 @@
     <string name="based_on_label">Based on <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">Warren Bank\'s project</a></string>
     <string name="faq_label">Frequently asked questions</string>
     <string name="background_working_label">The app doesn\'t work in background</string>
-    <string name="background_working_faq_label">Due to Android restrictions, we can\'t guarantee that app will be able to always work in background. Try not to remove it from recent apps list. Ensure that this app is allowed to run in background (Settings - Apps). Disable battery saver mode.</string>
+    <string name="background_working_faq_label">Due to Android restrictions, we can\'t guarantee that app will be able to always work in background. Ensure that this app is allowed to run in background (Settings - Apps). Disable battery saver mode.</string>
     <string name="last_known_location_not_sent_label">The app doesn\'t send last known location</string>
     <string name="last_known_location_not_sent_faq_label">The app can send last known location only if the system can provide it. If Android can\'t provide the last known location (for example, because you has GPS disabled for a long time), the app won\'t send anything.</string>
+    <string name="location_permission_label">How does this app use location permission?</string>
+    <string name="location_permission_faq_label">The app uses it to get the location after receiving an appropriate incoming SMS.</string>
+    <string name="sms_permission_label">How does this app use SMS permission?</string>
+    <string name="sms_permission_faq_label">The app reads all the incoming SMS to check if it needs to send location as a reply. It doesn\'t store or process your SMS messages in any other way.</string>
+    <string name="contacts_permission_label">How does this app use contacts permission?</string>
+    <string name="contacts_permission_faq_label">This permission is not necessary. You can provide it to use contact picker when creating a new item. If you don\'t provide it, you still will be able to enter the number by yourselves.</string>
     <string name="privacy_policy_label">Privacy policy</string>
     <string name="privacy_policy_faq_label">The app doesn\'t collect any data. Google Location services are used for location requests. Their use is regulated by <a href="https://policies.google.com/technologies/location-data">Google Privacy Policy</a>.</string>
     <string name="back_button">Back</string>

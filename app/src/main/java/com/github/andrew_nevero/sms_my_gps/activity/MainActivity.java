@@ -4,11 +4,10 @@ import com.github.andrew_nevero.sms_my_gps.R;
 import com.github.andrew_nevero.sms_my_gps.data.Constants;
 import com.github.andrew_nevero.sms_my_gps.data.ListItem;
 import com.github.andrew_nevero.sms_my_gps.data.Preferences;
-import com.github.andrew_nevero.sms_my_gps.events.SMSReceiver;
+import com.github.andrew_nevero.sms_my_gps.events.ForegroundService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
@@ -32,30 +32,23 @@ public class MainActivity extends AppCompatActivity {
 
   private FloatingActionButton plusButton;
 
-  private SMSReceiver smsReceiver;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    smsReceiver = new SMSReceiver();
-    registerReceiver(smsReceiver, new IntentFilter(
-            "android.provider.Telephony.SMS_RECEIVED"));
-
     enableServiceSwitch = findViewById(R.id.enable_service_switch);
-    enableServiceSwitch.setOnClickListener(v -> Preferences
-            .setEnabled(MainActivity.this, enableServiceSwitch.isChecked()));
-
-    if (!areLocationAndSmsPermissionsGranted()) {
-      enableServiceSwitch.setEnabled(false);
-      enableServiceSwitch.setClickable(false);
-      enableServiceSwitch.setChecked(false);
-      Preferences.setEnabled(MainActivity.this, false);
-      requestLocationAndSmsPermissions();
-    } else {
-      enableServiceSwitch.setChecked(Preferences.isEnabled(MainActivity.this));
-    }
+    updateServiceSwitchStatus();
+    enableServiceSwitch.setOnClickListener(v -> {
+      boolean checked = enableServiceSwitch.isChecked();
+      Preferences.setEnabled(MainActivity.this, checked);
+      Intent serviceIntent = new Intent(this, ForegroundService.class);
+      if (checked) {
+        ContextCompat.startForegroundService(this, serviceIntent);
+      } else {
+        stopService(serviceIntent);
+      }
+    });
 
     listView = findViewById(R.id.list_view);
     listItems = Preferences.getListItems(MainActivity.this);
@@ -74,9 +67,6 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    if (smsReceiver != null) {
-      unregisterReceiver(smsReceiver);
-    }
   }
 
   private boolean areLocationAndSmsPermissionsGranted() {
@@ -139,6 +129,26 @@ public class MainActivity extends AppCompatActivity {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == Constants.EDIT_ITEM_REQUEST_CODE) {
       processEditActivityResult(resultCode, data);
+    }
+  }
+
+  private void updateServiceSwitchStatus() {
+    Intent serviceIntent = new Intent(this, ForegroundService.class);
+    stopService(serviceIntent);
+    enableServiceSwitch.setChecked(false);
+
+    if (!areLocationAndSmsPermissionsGranted()) {
+      enableServiceSwitch.setEnabled(false);
+      enableServiceSwitch.setClickable(false);
+      enableServiceSwitch.setChecked(false);
+      Preferences.setEnabled(MainActivity.this, false);
+      requestLocationAndSmsPermissions();
+    } else {
+      boolean serviceEnabled = Preferences.isEnabled(MainActivity.this);
+      enableServiceSwitch.setChecked(serviceEnabled);
+      if (serviceEnabled) {
+        ContextCompat.startForegroundService(this, serviceIntent);
+      }
     }
   }
 

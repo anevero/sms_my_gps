@@ -27,4 +27,8 @@ public class Constants {
           "android.permission.ACCESS_FINE_LOCATION"};
   public static final String[] CONTACTS_PERMISSION =
           {"android.permission.READ_CONTACTS"};
+
+  // Notification settings for the foreground service.
+  public static final String NOTIFICATION_CHANNEL_ID = "ForegroundService";
+  public static final int NOTIFICATION_ID = 123;
 }

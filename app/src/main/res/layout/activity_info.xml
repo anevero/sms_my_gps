@@ -85,6 +85,51 @@
             android:text="@string/last_known_location_not_sent_faq_label" />
 
         <TextView
+            android:id="@+id/location_permission_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="@string/location_permission_label"
+            android:textColor="@color/header_text_color"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/location_permission_faq_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/location_permission_faq_label" />
+
+        <TextView
+            android:id="@+id/sms_permission_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="@string/sms_permission_label"
+            android:textColor="@color/header_text_color"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sms_permission_faq_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sms_permission_faq_label" />
+
+        <TextView
+            android:id="@+id/contacts_permission_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="@string/contacts_permission_label"
+            android:textColor="@color/header_text_color"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/contacts_permission_faq_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contacts_permission_faq_label" />
+
+        <TextView
             android:id="@+id/privacy_policy_label"
             style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:layout_width="match_parent"
