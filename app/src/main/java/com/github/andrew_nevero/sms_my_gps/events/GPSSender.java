@@ -9,6 +9,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,8 +28,9 @@ public final class GPSSender {
       locationClient.getLastLocation().addOnCompleteListener(
               new SMSLocationListener(recipient, true));
     }
-    locationClient.getLastLocation().addOnCompleteListener(
-            new SMSLocationListener(recipient, false));
+    locationClient
+            .getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, null)
+            .addOnCompleteListener(new SMSLocationListener(recipient, false));
   }
 
   private static final class SMSLocationListener
@@ -78,11 +80,11 @@ public final class GPSSender {
       float speed = location.getSpeed();
 
       return String.format(
-              "[%1$s]\n" +
-              "Coordinates: https://maps.google.com/?q=%2$s,%3$s\n" +
-              "Accuracy (m): %4$s\n" +
-              "Speed (m/sec): %5$s",
-              ((lastKnownLocation) ? "last known" : "current"),
+              "%1$s:\n" +
+              "https://www.google.com/maps/search/?api=1&query=%2$s,%3$s\n" +
+              "Accuracy: %4$s m\n" +
+              "Speed: %5$s m/sec",
+              ((lastKnownLocation) ? "Last known" : "Current"),
               lat, lon, accuracy, speed);
     }
   }
