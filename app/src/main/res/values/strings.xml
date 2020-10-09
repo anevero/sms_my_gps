@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Version 3.2.1 (23)</string>
+    <string name="app_version">Version 3.2.2 (24)</string>
 
     <string name="add_item">Add item</string>
     <string name="edit_item">Edit item</string>
@@ -11,9 +11,9 @@
     <string name="service_running">Service is running</string>
     <string name="service_channel">Service channel</string>
 
-    <string name="sender_label">Sender must end with:</string>
+    <string name="sender_label">Sender\'s number:</string>
     <string name="pick_contact_button">Choose a contact…</string>
-    <string name="message_label">Message must begin with:</string>
+    <string name="message_label">Sender\'s message:</string>
     <string name="last_known_location_checkbox">Send last known location</string>
     <string name="last_known_location_faq_label">Last known location can be sent immediately, but can be incorrect. The real location will still be sent within a few minutes.</string>
     <string name="delete_button">Delete</string>
@@ -24,10 +24,12 @@
     <string name="source_code_label"><a href="https://github.com/anevero/sms_my_gps">Source code</a> (GPL 2.0 license)</string>
     <string name="based_on_label">Based on <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">Warren Bank\'s project</a></string>
     <string name="faq_label">Frequently asked questions</string>
-    <string name="background_working_label">The app doesn\'t work in background</string>
+    <string name="how_to_label">How to use this app?</string>
+    <string name="how_to_faq_label">Just add a number and a message, to which the app should reply. When your phone gets this message from this number, the app will send the location as a reply to it.</string>
+    <string name="background_working_label">Why does this app not work in the background?</string>
     <string name="background_working_faq_label">Due to Android restrictions, we can\'t guarantee that app will be able to always work in background. Ensure that this app is allowed to run in background (Settings - Apps). Disable battery saver mode.</string>
-    <string name="last_known_location_not_sent_label">The app doesn\'t send last known location</string>
-    <string name="last_known_location_not_sent_faq_label">The app can send last known location only if the system can provide it. If Android can\'t provide the last known location (for example, because you has GPS disabled for a long time), the app won\'t send anything.</string>
+    <string name="last_known_location_not_sent_label">Why does this app not send the last known location?</string>
+    <string name="last_known_location_not_sent_faq_label">The app can send last known location only if the system can provide it. If Android can\'t provide the last known location (for example, because you had GPS disabled for a long time), the app won\'t send it.</string>
     <string name="location_permission_label">How does this app use location permission?</string>
     <string name="location_permission_faq_label">The app uses it to get the location after receiving an appropriate incoming SMS.</string>
     <string name="sms_permission_label">How does this app use SMS permission?</string>

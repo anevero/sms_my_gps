@@ -108,8 +108,10 @@ public class EditItemActivity extends AppCompatActivity {
       Intent result = new Intent(this, MainActivity.class);
       result.putExtra(Constants.ITEM_ID_KEY, getIntent().getIntExtra(
               Constants.ITEM_ID_KEY, -1));
-      result.putExtra(Constants.SENDER_KEY, senderInput.getText().toString());
-      result.putExtra(Constants.MESSAGE_KEY, messageInput.getText().toString());
+      result.putExtra(Constants.SENDER_KEY,
+                      senderInput.getText().toString().trim());
+      result.putExtra(Constants.MESSAGE_KEY,
+                      messageInput.getText().toString().trim());
       result.putExtra(Constants.LAST_KNOWN_LOCATION_KEY,
                       lastKnownLocationCheckbox.isChecked());
       setResult(Constants.EDIT_ITEM_ADD_RESULT_CODE, result);

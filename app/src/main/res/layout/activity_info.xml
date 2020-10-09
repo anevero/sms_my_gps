@@ -55,6 +55,21 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/how_to_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="@string/how_to_label"
+            android:textColor="@color/header_text_color"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/how_to_faq_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_faq_label" />
+
+        <TextView
             android:id="@+id/background_working_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

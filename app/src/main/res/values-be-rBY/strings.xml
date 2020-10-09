@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версія 3.2.1 (23)</string>
+    <string name="app_version">Версія 3.2.2 (24)</string>
 
     <string name="add_item">Дадаць запіс</string>
     <string name="edit_item">Рэдагаваць запіс</string>
@@ -11,9 +11,9 @@
     <string name="service_running">Сервіс запушчаны</string>
     <string name="service_channel">Канал сэрвісу</string>
 
-    <string name="sender_label">Нумар павінен заканчвацца на:</string>
+    <string name="sender_label">Нумар адпраўніка:</string>
     <string name="pick_contact_button">Выбраць кантакт…</string>
-    <string name="message_label">Паведамленне павінна пачынацца на:</string>
+    <string name="message_label">Паведамленне адпраўніка:</string>
     <string name="last_known_location_checkbox">Адпраўляць апошняе вядомае месцазнаходжанне</string>
     <string name="last_known_location_faq_label">Апошняе вядомае месцазнаходжанне можа быць адпраўлена імгненна, але можа быць некарэктным. Рэальнае месцазнаходжанне ўсё гэтак жа будзе адпраўлена на працягу некалькіх хвілін.</string>
     <string name="delete_button">Выдаліць</string>
@@ -24,10 +24,12 @@
     <string name="source_code_label"><a href="https://github.com/anevero/sms_my_gps">Зыходны код</a> (ліцэнзія GPL 2.0)</string>
     <string name="based_on_label">На аснове <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">праекта Уорэна Бэнка</a></string>
     <string name="faq_label">Частыя пытанні</string>
-    <string name="background_working_label">Прыкладанне не працуе ў фоне</string>
+    <string name="how_to_label">Як працаваць з гэтым прыкладаннем?</string>
+    <string name="how_to_faq_label">Проста дадайце нумар і паведамленне, на якое прыкладанне павінна адказаць. Калі ваш тэлефон атрымае гэтае паведамленне з гэтага нумара, прыкладанне адправіць месцазнаходжанне ў адказ на яго.</string>
+    <string name="background_working_label">Чаму прыкладанне не працуе ў фоне?</string>
     <string name="background_working_faq_label">З прычыны абмежаванняў Android мы не можам гарантаваць, што прыкладанне зможа заўсёды працаваць у фоне. Пераканайцеся, што яму дазволена працаваць у фонавым рэжыме (Налады - Прыкладанні). Адключыце рэжым эканоміі зараду.</string>
-    <string name="last_known_location_not_sent_label">Прыкладанне не адпраўляе апошняе вядомае месцазнаходжанне</string>
-    <string name="last_known_location_not_sent_faq_label">Прыкладанне можа адправіць апошняе вядомае месцазнаходжанне, толькі калі сістэма можа яго прадаставіць. Калі прыкладанне не зможа атрымаць ад Android апошняе вядомае месцазнаходжанне (напрыклад, таму што GPS быў доўга адключаны), яно нічога не адправіць.</string>
+    <string name="last_known_location_not_sent_label">Чаму прыкладанне не адпраўляе апошняе вядомае месцазнаходжанне?</string>
+    <string name="last_known_location_not_sent_faq_label">Прыкладанне можа адправіць апошняе вядомае месцазнаходжанне, толькі калі сістэма можа яго прадаставіць. Калі прыкладанне не зможа атрымаць ад Android апошняе вядомае месцазнаходжанне (напрыклад, таму што GPS быў доўга адключаны), яно яго не адправіць.</string>
     <string name="location_permission_label">Як прыкладанне выкарыстоўвае дазвол на доступ да месцазнаходжання?</string>
     <string name="location_permission_faq_label">Прыкладанне выкарыстоўвае яго, каб атрымаць месцазнаходжанне пасля атрымання адпаведнага ўваходнага SMS.</string>
     <string name="sms_permission_label">Як прыкладанне выкарыстоўвае дазвол на доступ да SMS?</string>

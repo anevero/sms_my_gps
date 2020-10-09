@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версия 3.2.1 (23)</string>
+    <string name="app_version">Версия 3.2.2 (24)</string>
 
     <string name="add_item">Добавить запись</string>
     <string name="edit_item">Редактировать запись</string>
@@ -11,9 +11,9 @@
     <string name="service_running">Сервис запущен</string>
     <string name="service_channel">Канал сервиса</string>
 
-    <string name="sender_label">Номер должен заканчиваться на:</string>
+    <string name="sender_label">Номер отправителя:</string>
     <string name="pick_contact_button">Выбрать контакт…</string>
-    <string name="message_label">Сообщение должно начинаться на:</string>
+    <string name="message_label">Сообщение отправителя:</string>
     <string name="last_known_location_checkbox">Отправлять последнее известное местоположение</string>
     <string name="last_known_location_faq_label">Последнее известное местоположение может быть отправлено мгновенно, но может быть некорректным. Реальное местоположение все равно будет отправлено в течение нескольких минут.</string>
     <string name="delete_button">Удалить</string>
@@ -24,10 +24,12 @@
     <string name="source_code_label"><a href="https://github.com/anevero/sms_my_gps">Исходный код</a> (лицензия GPL 2.0)</string>
     <string name="based_on_label">На основе <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">проекта Уоррена Бэнка</a></string>
     <string name="faq_label">Частые вопросы</string>
-    <string name="background_working_label">Приложение не работает в фоне</string>
+    <string name="how_to_label">Как работать с этим приложением?</string>
+    <string name="how_to_faq_label">Просто добавьте номер и сообщение, на которое приложение должно ответить. Когда ваш телефон получит это сообщение с этого номера, приложение отправит местоположение в ответ на него.</string>
+    <string name="background_working_label">Почему приложение не работает в фоне?</string>
     <string name="background_working_faq_label">Из-за ограничений Android мы не можем гарантировать, что приложение всегда будет работать в фоновом режиме. Убедитесь, что этому приложению разрешено работать в фоновом режиме (Настройки - Приложения). Отключите режим экономии заряда батареи.</string>
-    <string name="last_known_location_not_sent_label">Приложение не отправляет последнее известное местоположение</string>
-    <string name="last_known_location_not_sent_faq_label">Приложение может отправить последнее известное местоположение, только если система может его предоставить. Если Android не может предоставить последнее известное местоположение (например, потому что GPS был долго отключен), приложение ничего не отправит.</string>
+    <string name="last_known_location_not_sent_label">Почему приложение не отправляет последнее известное местоположение?</string>
+    <string name="last_known_location_not_sent_faq_label">Приложение может отправить последнее известное местоположение, только если система может его предоставить. Если Android не может предоставить последнее известное местоположение (например, потому что GPS был долго отключен), приложение его не отправит.</string>
     <string name="location_permission_label">Как приложение использует разрешение на доступ к местоположению?</string>
     <string name="location_permission_faq_label">Приложение использует его, чтобы получить местоположение после получения соответствующего входящего SMS.</string>
     <string name="sms_permission_label">Как приложение использует разрешение на доступ к SMS?</string>

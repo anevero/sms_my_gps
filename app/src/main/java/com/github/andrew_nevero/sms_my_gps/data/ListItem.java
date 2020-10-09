@@ -1,5 +1,7 @@
 package com.github.andrew_nevero.sms_my_gps.data;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -17,6 +19,7 @@ public final class ListItem {
     this.sendLastKnownLocation = sendLastKnownLocation;
   }
 
+  @NonNull
   @Override
   public String toString() {
     return getSender();
@@ -71,8 +74,7 @@ public final class ListItem {
         continue;
       }
 
-      if (sender.endsWith(item.sender) &&
-          message.startsWith(item.messagePrefix)) {
+      if (sender.endsWith(item.sender) && message.equals(item.messagePrefix)) {
         return item;
       }
     }
