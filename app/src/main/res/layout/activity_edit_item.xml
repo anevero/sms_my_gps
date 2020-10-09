@@ -10,7 +10,7 @@
     android:theme="@style/AppTheme"
     tools:context=".activity.EditItemActivity">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="24dp">
 
-            <CheckBox
+            <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/last_known_location_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             android:paddingTop="8dp"
             android:text="@string/last_known_location_faq_label" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -94,8 +94,8 @@
                 android:layout_marginStart="16dp"
                 android:text="@string/save_button" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </ScrollView>

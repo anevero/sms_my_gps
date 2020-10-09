@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версия 3.2.2 (24)</string>
+    <string name="app_version">Версия 3.2.2 (25)</string>
 
     <string name="add_item">Добавить запись</string>
     <string name="edit_item">Редактировать запись</string>

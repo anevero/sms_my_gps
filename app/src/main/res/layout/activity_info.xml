@@ -10,7 +10,7 @@
     android:theme="@style/AppTheme"
     tools:context=".activity.InfoActivity">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
@@ -160,6 +160,6 @@
             android:layout_height="wrap_content"
             android:text="@string/privacy_policy_faq_label" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </ScrollView>

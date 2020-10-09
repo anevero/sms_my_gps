@@ -3,6 +3,7 @@ package com.github.andrew_nevero.sms_my_gps.activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckBox;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,7 +13,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.github.andrew_nevero.sms_my_gps.R;
@@ -28,7 +28,7 @@ public class EditItemActivity extends AppCompatActivity {
   private TextInputLayout messageInputLayout;
 
   private Button pickContactButton;
-  private CheckBox lastKnownLocationCheckbox;
+  private AppCompatCheckBox lastKnownLocationCheckbox;
 
   private Button deleteButton;
   private Button saveButton;
