@@ -1,4 +1,4 @@
-package com.github.andrew_nevero.sms_my_gps.events;
+package com.github.anevero.sms_my_gps.events;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -13,9 +13,9 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.github.andrew_nevero.sms_my_gps.R;
-import com.github.andrew_nevero.sms_my_gps.activity.MainActivity;
-import com.github.andrew_nevero.sms_my_gps.data.Constants;
+import com.github.anevero.sms_my_gps.R;
+import com.github.anevero.sms_my_gps.activity.MainActivity;
+import com.github.anevero.sms_my_gps.data.Constants;
 
 public class ForegroundService extends Service {
   private static final String TAG = "ForegroundService";

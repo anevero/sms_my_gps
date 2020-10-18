@@ -1,4 +1,4 @@
-package com.github.andrew_nevero.sms_my_gps.activity;
+package com.github.anevero.sms_my_gps.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,8 +15,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.github.andrew_nevero.sms_my_gps.R;
-import com.github.andrew_nevero.sms_my_gps.data.Constants;
+import com.github.anevero.sms_my_gps.R;
+import com.github.anevero.sms_my_gps.data.Constants;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package com.github.andrew_nevero.sms_my_gps.events;
+package com.github.anevero.sms_my_gps.events;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

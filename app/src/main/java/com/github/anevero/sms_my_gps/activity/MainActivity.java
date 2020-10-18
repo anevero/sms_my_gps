@@ -1,10 +1,10 @@
-package com.github.andrew_nevero.sms_my_gps.activity;
+package com.github.anevero.sms_my_gps.activity;
 
-import com.github.andrew_nevero.sms_my_gps.R;
-import com.github.andrew_nevero.sms_my_gps.data.Constants;
-import com.github.andrew_nevero.sms_my_gps.data.ListItem;
-import com.github.andrew_nevero.sms_my_gps.data.Preferences;
-import com.github.andrew_nevero.sms_my_gps.events.ForegroundService;
+import com.github.anevero.sms_my_gps.R;
+import com.github.anevero.sms_my_gps.data.Constants;
+import com.github.anevero.sms_my_gps.data.ListItem;
+import com.github.anevero.sms_my_gps.data.Preferences;
+import com.github.anevero.sms_my_gps.events.ForegroundService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;

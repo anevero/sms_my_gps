@@ -1,7 +1,7 @@
-package com.github.andrew_nevero.sms_my_gps.events;
+package com.github.anevero.sms_my_gps.events;
 
-import com.github.andrew_nevero.sms_my_gps.data.ListItem;
-import com.github.andrew_nevero.sms_my_gps.data.Preferences;
+import com.github.anevero.sms_my_gps.data.ListItem;
+import com.github.anevero.sms_my_gps.data.Preferences;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

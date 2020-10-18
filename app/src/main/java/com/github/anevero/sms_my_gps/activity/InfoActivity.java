@@ -1,4 +1,4 @@
-package com.github.andrew_nevero.sms_my_gps.activity;
+package com.github.anevero.sms_my_gps.activity;
 
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.github.andrew_nevero.sms_my_gps.R;
+import com.github.anevero.sms_my_gps.R;
 
 import java.util.Objects;
 

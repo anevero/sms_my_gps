@@ -1,4 +1,4 @@
-package com.github.andrew_nevero.sms_my_gps.data;
+package com.github.anevero.sms_my_gps.data;
 
 import androidx.annotation.NonNull;
 
