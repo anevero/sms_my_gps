@@ -13,7 +13,7 @@
 
     <string name="sender_label">Номер отправителя:</string>
     <string name="pick_contact_button">Выбрать контакт…</string>
-    <string name="message_label">Сообщение отправителя:</string>
+    <string name="message_label">Префикс сообщения отправителя:</string>
     <string name="last_known_location_checkbox">Отправлять последнее известное местоположение</string>
     <string name="last_known_location_faq_label">Последнее известное местоположение может быть отправлено мгновенно, но может быть некорректным. Реальное местоположение все равно будет отправлено в течение нескольких минут.</string>
     <string name="delete_button">Удалить</string>

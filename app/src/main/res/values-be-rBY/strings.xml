@@ -13,7 +13,7 @@
 
     <string name="sender_label">Нумар адпраўніка:</string>
     <string name="pick_contact_button">Выбраць кантакт…</string>
-    <string name="message_label">Паведамленне адпраўніка:</string>
+    <string name="message_label">Прэфікс паведамлення адпраўніка:</string>
     <string name="last_known_location_checkbox">Адпраўляць апошняе вядомае месцазнаходжанне</string>
     <string name="last_known_location_faq_label">Апошняе вядомае месцазнаходжанне можа быць адпраўлена імгненна, але можа быць некарэктным. Рэальнае месцазнаходжанне ўсё гэтак жа будзе адпраўлена на працягу некалькіх хвілін.</string>
     <string name="delete_button">Выдаліць</string>

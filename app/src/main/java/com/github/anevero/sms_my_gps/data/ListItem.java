@@ -74,7 +74,8 @@ public final class ListItem {
         continue;
       }
 
-      if (sender.endsWith(item.sender) && message.equals(item.messagePrefix)) {
+      if (sender.endsWith(item.sender) &&
+          message.startsWith(item.messagePrefix)) {
         return item;
       }
     }
