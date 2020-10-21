@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 
 public final class ListItem {
-  private String sender;
+  private final String sender;
   private String messagePrefix;
 
   public ListItem(String sender, String messagePrefix) {
@@ -30,10 +30,6 @@ public final class ListItem {
     return messagePrefix;
   }
 
-  public void setSender(String sender) {
-    this.sender = sender;
-  }
-
   public void setMessagePrefix(String messagePrefix) {
     this.messagePrefix = messagePrefix;
   }
@@ -51,12 +47,18 @@ public final class ListItem {
   }
 
   public static ListItem getMatch(ArrayList<ListItem> listItems,
-                                  String sender, String message) {
-    if (sender == null || message == null || sender.isEmpty() ||
-        message.isEmpty()) {
-      return null;
+                                  String sender) {
+    for (ListItem item : listItems) {
+      if (sender.endsWith(item.sender)) {
+        return item;
+      }
     }
 
+    return null;
+  }
+
+  public static ListItem getMatch(ArrayList<ListItem> listItems,
+                                  String sender, String message) {
     for (ListItem item : listItems) {
       if (sender.endsWith(item.sender) &&
           message.startsWith(item.messagePrefix)) {

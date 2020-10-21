@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версия 3.3.0 (27)</string>
+    <string name="app_version">Версия 3.3.0 (28)</string>
 
     <string name="add_item">Добавить запись</string>
     <string name="edit_item">Редактировать запись</string>
@@ -12,7 +12,7 @@
     <string name="service_running">Сервис запущен</string>
     <string name="service_channel">Канал сервиса</string>
 
-    <string name="item_already_added_warning">Этот элемент уже есть в списке!</string>
+    <string name="item_already_added_warning">Этот номер уже есть в списке!</string>
 
     <string name="sender_label">Номер отправителя:</string>
     <string name="pick_contact_button">Выбрать контакт…</string>

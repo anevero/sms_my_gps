@@ -46,6 +46,12 @@ public class EditItemActivity extends AppCompatActivity {
     deleteButton = findViewById(R.id.delete_button);
     saveButton = findViewById(R.id.save_button);
 
+    if (!isContactsPermissionGranted()) {
+      pickContactButton.setEnabled(false);
+      requestContactsPermission();
+    }
+    pickContactButton.setOnClickListener(v -> startContactPickerActivity());
+
     int itemId = getIntent().getIntExtra(Constants.ITEM_ID_KEY, -1);
     if (itemId == -1) {
       // We're adding a new item, not editing existing.
@@ -58,13 +64,11 @@ public class EditItemActivity extends AppCompatActivity {
 
       senderInput.setText(sender);
       messageInput.setText(message);
-    }
 
-    if (!isContactsPermissionGranted()) {
+      // Only changing the prefix is allowed.
+      senderInput.setEnabled(false);
       pickContactButton.setEnabled(false);
-      requestContactsPermission();
     }
-    pickContactButton.setOnClickListener(v -> startContactPickerActivity());
 
     senderInput.setOnFocusChangeListener((v, hasFocus) -> {
       if (hasFocus) {

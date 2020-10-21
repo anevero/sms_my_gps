@@ -196,17 +196,16 @@ public class MainActivity extends AppCompatActivity {
       String message = data.getStringExtra(Constants.MESSAGE_KEY);
 
       if (itemId == -1) {
-        if (ListItem.getMatch(listItems, sender, message) != null) {
+        if (ListItem.getMatch(listItems, sender) != null) {
           Toast.makeText(this, R.string.item_already_added_warning,
                          Toast.LENGTH_LONG).show();
           return;
         }
-        listItems.add(new ListItem("", ""));
+        listItems.add(new ListItem(sender, ""));
         itemId = listItems.size() - 1;
       }
 
       ListItem item = listItems.get(itemId);
-      item.setSender(sender);
       item.setMessagePrefix(message);
     }
 
