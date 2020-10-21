@@ -10,7 +10,7 @@ This fork is based on [Warren Bank's project](https://github.com/warren-bank/And
 
 ## Screenshots
 
-![SMS my GPS](https://user-images.githubusercontent.com/47552815/94821871-b94dcd80-040a-11eb-900f-cc3031b04abe.png)
+![SMS my GPS](https://user-images.githubusercontent.com/47552815/96753460-921a6880-13d8-11eb-84ad-274ce49988c6.png)
 
 ## Changes in the fork
 
@@ -23,7 +23,8 @@ location has been moved to the foreground service to ensure that the
 application works properly in the background mode.
 - Google Location services are now used instead of the system location
 provider. The app now depends on Google Play Services but sends the location
-faster.
+faster. Nevertheless, using system GPS provider is also possible (the
+corresponding option can be found in the settings).
 - Ability to send last known location which can be provided by the system
 almost immediately has been added.
 - Contact picker feature has been added (to add the number by choosing a
