@@ -53,26 +53,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="24dp">
-
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/last_known_location_checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/last_known_location_checkbox" />
-
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/send_last_known_location_faq"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:text="@string/last_known_location_faq_label" />
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

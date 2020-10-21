@@ -3,7 +3,6 @@ package com.github.anevero.sms_my_gps.activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatCheckBox;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,8 +27,6 @@ public class EditItemActivity extends AppCompatActivity {
   private TextInputLayout messageInputLayout;
 
   private Button pickContactButton;
-  private AppCompatCheckBox lastKnownLocationCheckbox;
-
   private Button deleteButton;
   private Button saveButton;
 
@@ -45,7 +42,6 @@ public class EditItemActivity extends AppCompatActivity {
     senderInputLayout = findViewById(R.id.sender_input_layout);
     messageInputLayout = findViewById(R.id.message_input_layout);
     pickContactButton = findViewById(R.id.pick_contact_button);
-    lastKnownLocationCheckbox = findViewById(R.id.last_known_location_checkbox);
 
     deleteButton = findViewById(R.id.delete_button);
     saveButton = findViewById(R.id.save_button);
@@ -59,12 +55,9 @@ public class EditItemActivity extends AppCompatActivity {
       // We're editing existing item and must fill the fields with current info.
       String sender = getIntent().getStringExtra(Constants.SENDER_KEY);
       String message = getIntent().getStringExtra(Constants.MESSAGE_KEY);
-      boolean lastKnownLocation = getIntent().getBooleanExtra(
-              Constants.LAST_KNOWN_LOCATION_KEY, false);
 
       senderInput.setText(sender);
       messageInput.setText(message);
-      lastKnownLocationCheckbox.setChecked(lastKnownLocation);
     }
 
     if (!isContactsPermissionGranted()) {
@@ -112,8 +105,6 @@ public class EditItemActivity extends AppCompatActivity {
                       senderInput.getText().toString().trim());
       result.putExtra(Constants.MESSAGE_KEY,
                       messageInput.getText().toString().trim());
-      result.putExtra(Constants.LAST_KNOWN_LOCATION_KEY,
-                      lastKnownLocationCheckbox.isChecked());
       setResult(Constants.EDIT_ITEM_ADD_RESULT_CODE, result);
       finish();
     });
@@ -125,7 +116,6 @@ public class EditItemActivity extends AppCompatActivity {
       finish();
       return true;
     }
-
     return super.onOptionsItemSelected(item);
   }
 

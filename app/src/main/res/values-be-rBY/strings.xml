@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версія 3.2.2 (25)</string>
+    <string name="app_version">Версія 3.3.0 (27)</string>
 
     <string name="add_item">Дадаць запіс</string>
     <string name="edit_item">Рэдагаваць запіс</string>
     <string name="info">Аб прыкладанні</string>
+    <string name="settings">Налады</string>
 
     <string name="enable_service_switch">Уключыць сэрвіс</string>
     <string name="service_running">Сервіс запушчаны</string>
     <string name="service_channel">Канал сэрвісу</string>
 
+    <string name="item_already_added_warning">Гэты элемент ужо ёсць у спісе!</string>
+
     <string name="sender_label">Нумар адпраўніка:</string>
     <string name="pick_contact_button">Выбраць кантакт…</string>
     <string name="message_label">Прэфікс паведамлення адпраўніка:</string>
-    <string name="last_known_location_checkbox">Адпраўляць апошняе вядомае месцазнаходжанне</string>
-    <string name="last_known_location_faq_label">Апошняе вядомае месцазнаходжанне можа быць адпраўлена імгненна, але можа быць некарэктным. Рэальнае месцазнаходжанне ўсё гэтак жа будзе адпраўлена на працягу некалькіх хвілін.</string>
     <string name="delete_button">Выдаліць</string>
     <string name="cancel_button">Зачыніць</string>
     <string name="save_button">Захаваць</string>
     <string name="field_empty_label">Гэта поле не можа быць пустым</string>
 
+    <string name="version_history_label"><a href="https://github.com/anevero/sms_my_gps/releases">Гісторыя версій</a></string>
     <string name="source_code_label"><a href="https://github.com/anevero/sms_my_gps">Зыходны код</a> (ліцэнзія GPL 2.0)</string>
     <string name="based_on_label">На аснове <a href="https://github.com/warren-bank/Android-SMS-Automatic-Reply-GPS">праекта Уорэна Бэнка</a></string>
     <string name="faq_label">Частыя пытанні</string>
@@ -28,8 +30,12 @@
     <string name="how_to_faq_label">Проста дадайце нумар і паведамленне, на якое прыкладанне павінна адказаць. Калі ваш тэлефон атрымае гэтае паведамленне з гэтага нумара, прыкладанне адправіць месцазнаходжанне ў адказ на яго.</string>
     <string name="background_working_label">Чаму прыкладанне не працуе ў фоне?</string>
     <string name="background_working_faq_label">З прычыны абмежаванняў Android мы не можам гарантаваць, што прыкладанне зможа заўсёды працаваць у фоне. Пераканайцеся, што яму дазволена працаваць у фонавым рэжыме (Налады - Прыкладанні). Адключыце рэжым эканоміі зараду.</string>
+    <string name="last_known_location_label">Чым адрозніваюцца бягучае і апошняе вядомае месцазнаходжанне?</string>
+    <string name="last_known_location_faq_label">Апошняе вядомае месцазнаходжанне можа быць адпраўлена імгненна, але можа быць досыць састарэлым.</string>
     <string name="last_known_location_not_sent_label">Чаму прыкладанне не адпраўляе апошняе вядомае месцазнаходжанне?</string>
     <string name="last_known_location_not_sent_faq_label">Прыкладанне можа адправіць апошняе вядомае месцазнаходжанне, толькі калі сістэма можа яго прадаставіць. Калі прыкладанне не зможа атрымаць ад Android апошняе вядомае месцазнаходжанне (напрыклад, таму што GPS быў доўга адключаны), яно яго не адправіць.</string>
+    <string name="system_gps_label">Чым адрозніваюцца Google Location Services і GPS?</string>
+    <string name="system_gps_faq_label">Для атрымання месцазнаходжання амаль заўсёды лепш выкарыстоўваць Google Location Services. Гэты сервіс выкарыстоўвае розныя датчыкі прылады (у тым ліку GPS), каб атрымаць месцазнаходжанне за некалькі дзясяткаў секунд. Тым не менш, часам модуль GPS можа забяспечыць больш дакладнае месцазнаходжанне (але гэта можа заняць да некалькіх хвілін).</string>
     <string name="location_permission_label">Як прыкладанне выкарыстоўвае дазвол на доступ да месцазнаходжання?</string>
     <string name="location_permission_faq_label">Прыкладанне выкарыстоўвае яго, каб атрымаць месцазнаходжанне пасля атрымання адпаведнага ўваходнага SMS.</string>
     <string name="sms_permission_label">Як прыкладанне выкарыстоўвае дазвол на доступ да SMS?</string>
@@ -39,5 +45,11 @@
     <string name="privacy_policy_label">Палітыка прыватнасці</string>
     <string name="privacy_policy_faq_label">Прыкладанне не збірае ніякіх дадзеных. Для запытаў месцазнаходжання выкарыстоўваюцца службы месцазнаходжання Google. Іх выкарыстанне рэгулюецца <a href="https://policies.google.com/technologies/location-data">Палітыкай прыватнасці Google</a>.</string>
     <string name="back_button">Назад</string>
+
+    <string name="location_sources_label">Выберыце крыніцы атрымання месцазнаходжання. Кожны пункт ініцыюе адпраўку адпаведнага SMS.</string>
+    <string name="fused_checkbox">Google Location Services</string>
+    <string name="fused_last_known_checkbox">Апошняе вядомае месцазнаходжанне (Google Location Services)</string>
+    <string name="system_gps_checkbox">GPS</string>
+    <string name="system_gps_last_known_checkbox">Апошняе вядомае месцазнаходжанне (GPS)</string>
 
 </resources>

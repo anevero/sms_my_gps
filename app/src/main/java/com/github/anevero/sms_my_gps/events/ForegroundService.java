@@ -53,7 +53,7 @@ public class ForegroundService extends Service {
               getResources().getString(R.string.service_channel),
               NotificationManager.IMPORTANCE_LOW);
       serviceChannel.setShowBadge(false);
-      serviceChannel.setSound(null,null);
+      serviceChannel.setSound(null, null);
       serviceChannel.enableVibration(false);
       getSystemService(NotificationManager.class)
               .createNotificationChannel(serviceChannel);

@@ -13,6 +13,7 @@ import com.github.anevero.sms_my_gps.R;
 import java.util.Objects;
 
 public class InfoActivity extends AppCompatActivity {
+  private TextView releasesLabel;
   private TextView sourceCodeLabel;
   private TextView basedOnLabel;
   private TextView privacyPolicyLabel;
@@ -24,6 +25,9 @@ public class InfoActivity extends AppCompatActivity {
 
     Objects.requireNonNull(getSupportActionBar())
            .setDisplayHomeAsUpEnabled(true);
+
+    releasesLabel = findViewById(R.id.releases_label);
+    releasesLabel.setMovementMethod(LinkMovementMethod.getInstance());
 
     sourceCodeLabel = findViewById(R.id.source_code_label);
     sourceCodeLabel.setMovementMethod(LinkMovementMethod.getInstance());

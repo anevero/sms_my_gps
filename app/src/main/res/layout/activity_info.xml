@@ -33,6 +33,12 @@
             android:text="@string/app_version" />
 
         <TextView
+            android:id="@+id/releases_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/version_history_label" />
+
+        <TextView
             android:id="@+id/source_code_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
-            android:text="@string/last_known_location_not_sent_label"
+            android:text="@string/last_known_location_label"
             android:textColor="@color/header_text_color"
             android:textStyle="bold" />
 
@@ -97,7 +103,37 @@
             android:id="@+id/last_known_location_faq_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/last_known_location_faq_label" />
+
+        <TextView
+            android:id="@+id/last_known_location_not_sent_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="@string/last_known_location_not_sent_label"
+            android:textColor="@color/header_text_color"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/last_known_location_not_sent_faq_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/last_known_location_not_sent_faq_label" />
+
+        <TextView
+            android:id="@+id/system_gps_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="@string/system_gps_label"
+            android:textColor="@color/header_text_color"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/system_gps_faq_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/system_gps_faq_label" />
 
         <TextView
             android:id="@+id/location_permission_label"

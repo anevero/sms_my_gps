@@ -5,7 +5,6 @@ public class Constants {
   public static final String ITEM_ID_KEY = "item_id";
   public static final String SENDER_KEY = "sender";
   public static final String MESSAGE_KEY = "message";
-  public static final String LAST_KNOWN_LOCATION_KEY = "last_known_location";
 
   // Activities request codes.
   public static final int EDIT_ITEM_REQUEST_CODE = 520;
@@ -30,5 +29,5 @@ public class Constants {
 
   // Notification settings for the foreground service.
   public static final String NOTIFICATION_CHANNEL_ID = "ForegroundService";
-  public static final int NOTIFICATION_ID = 123;
+  public static final int NOTIFICATION_ID = 546;
 }

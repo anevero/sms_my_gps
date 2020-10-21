@@ -4,8 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/settings_menu"
+        android:icon="@drawable/ic_settings_24"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/info_menu"
         android:icon="@drawable/ic_info_24"
         android:title="@string/add_item"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+
 </menu>

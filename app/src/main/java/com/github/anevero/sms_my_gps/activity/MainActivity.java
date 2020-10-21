@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     updateServiceSwitchStatus();
     enableServiceSwitch.setOnClickListener(v -> {
       boolean checked = enableServiceSwitch.isChecked();
-      Preferences.setEnabled(MainActivity.this, checked);
+      Preferences.setServiceEnabled(MainActivity.this, checked);
       Intent serviceIntent = new Intent(this, ForegroundService.class);
       if (checked) {
         ContextCompat.startForegroundService(this, serviceIntent);
@@ -119,6 +120,9 @@ public class MainActivity extends AppCompatActivity {
     if (menuItem.getItemId() == R.id.info_menu) {
       startInfoActivity();
       return true;
+    } else if (menuItem.getItemId() == R.id.settings_menu) {
+      startSettingsActivity();
+      return true;
     }
     return super.onOptionsItemSelected(menuItem);
   }
@@ -141,10 +145,10 @@ public class MainActivity extends AppCompatActivity {
       enableServiceSwitch.setEnabled(false);
       enableServiceSwitch.setClickable(false);
       enableServiceSwitch.setChecked(false);
-      Preferences.setEnabled(MainActivity.this, false);
+      Preferences.setServiceEnabled(MainActivity.this, false);
       requestLocationAndSmsPermissions();
     } else {
-      boolean serviceEnabled = Preferences.isEnabled(MainActivity.this);
+      boolean serviceEnabled = Preferences.isServiceEnabled(MainActivity.this);
       enableServiceSwitch.setChecked(serviceEnabled);
       if (serviceEnabled) {
         ContextCompat.startForegroundService(this, serviceIntent);
@@ -160,13 +164,10 @@ public class MainActivity extends AppCompatActivity {
     if (needToAdd) {
       intent.putExtra(Constants.SENDER_KEY, "");
       intent.putExtra(Constants.MESSAGE_KEY, "");
-      intent.putExtra(Constants.LAST_KNOWN_LOCATION_KEY, false);
     } else {
       ListItem item = listItems.get(itemId);
       intent.putExtra(Constants.SENDER_KEY, item.getSender());
       intent.putExtra(Constants.MESSAGE_KEY, item.getMessagePrefix());
-      intent.putExtra(Constants.LAST_KNOWN_LOCATION_KEY,
-                      item.getSendLastKnownLocation());
     }
 
     startActivityForResult(intent, Constants.EDIT_ITEM_REQUEST_CODE);
@@ -193,18 +194,20 @@ public class MainActivity extends AppCompatActivity {
     } else {
       String sender = data.getStringExtra(Constants.SENDER_KEY);
       String message = data.getStringExtra(Constants.MESSAGE_KEY);
-      boolean lastKnownLocation = data.getBooleanExtra(
-              Constants.LAST_KNOWN_LOCATION_KEY, false);
 
       if (itemId == -1) {
-        listItems.add(new ListItem("", "", false));
+        if (ListItem.getMatch(listItems, sender, message) != null) {
+          Toast.makeText(this, R.string.item_already_added_warning,
+                         Toast.LENGTH_LONG).show();
+          return;
+        }
+        listItems.add(new ListItem("", ""));
         itemId = listItems.size() - 1;
       }
 
       ListItem item = listItems.get(itemId);
       item.setSender(sender);
       item.setMessagePrefix(message);
-      item.setSendLastKnownLocation(lastKnownLocation);
     }
 
     listAdapter.notifyDataSetChanged();
@@ -213,5 +216,9 @@ public class MainActivity extends AppCompatActivity {
 
   private void startInfoActivity() {
     startActivity(new Intent(this, InfoActivity.class));
+  }
+
+  private void startSettingsActivity() {
+    startActivity(new Intent(this, SettingsActivity.class));
   }
 }

@@ -16,7 +16,7 @@ public class SMSReceiver extends BroadcastReceiver {
   private static final String TAG = "SMSReceiver";
 
   public void onReceive(Context context, Intent intent) {
-    if (!Preferences.isEnabled(context)) {
+    if (!Preferences.isServiceEnabled(context)) {
       return;
     }
 
@@ -45,7 +45,7 @@ public class SMSReceiver extends BroadcastReceiver {
                  "from: " + sender + "\n" +
                  "message: " + body + "\n");
 
-      GPSSender.notify(context, sender, item.getSendLastKnownLocation());
+      GPSSender.notify(context, sender);
       return;
     }
   }

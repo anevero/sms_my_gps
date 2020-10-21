@@ -10,13 +10,10 @@ import java.util.ArrayList;
 public final class ListItem {
   private String sender;
   private String messagePrefix;
-  private boolean sendLastKnownLocation;
 
-  public ListItem(String sender, String message_prefix,
-                  boolean sendLastKnownLocation) {
+  public ListItem(String sender, String messagePrefix) {
     this.sender = sender;
-    this.messagePrefix = message_prefix;
-    this.sendLastKnownLocation = sendLastKnownLocation;
+    this.messagePrefix = messagePrefix;
   }
 
   @NonNull
@@ -33,20 +30,12 @@ public final class ListItem {
     return messagePrefix;
   }
 
-  public boolean getSendLastKnownLocation() {
-    return sendLastKnownLocation;
-  }
-
   public void setSender(String sender) {
     this.sender = sender;
   }
 
   public void setMessagePrefix(String messagePrefix) {
     this.messagePrefix = messagePrefix;
-  }
-
-  public void setSendLastKnownLocation(boolean sendLastKnownLocation) {
-    this.sendLastKnownLocation = sendLastKnownLocation;
   }
 
   public static ArrayList<ListItem> fromJson(String json) {
@@ -69,11 +58,6 @@ public final class ListItem {
     }
 
     for (ListItem item : listItems) {
-      if (item.sender == null || item.sender.isEmpty() ||
-          item.messagePrefix == null || item.messagePrefix.isEmpty()) {
-        continue;
-      }
-
       if (sender.endsWith(item.sender) &&
           message.startsWith(item.messagePrefix)) {
         return item;
