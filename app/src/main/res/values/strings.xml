@@ -54,7 +54,7 @@
     <string name="system_gps_switch_summary">Sometimes GPS module can provide a more accurate location than Google Location Services (but it can take up to several minutes).</string>
     <string name="system_gps_last_known_switch">Last known location (GPS)</string>
     <string name="system_gps_last_known_switch_summary">Gets the last known location info only from the GPS sensor (Google Location Services can also use some other sensors for that).</string>
-    <string name="location_accuracy_dropdown">Minimum accuracy (meters)</string>
+    <string name="location_accuracy_dropdown">Necessary accuracy (meters)</string>
     <string name="attempts_number_dropdown">Maximum location requests number</string>
     <string name="run_on_startup_switch">Run on system startup</string>
     <string name="run_on_startup_switch_summary">If the service is enabled, it will start automatically after system restart.</string>

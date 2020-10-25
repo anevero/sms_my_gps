@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public final class Preferences {
-  private final static String DEFAULT_LOCATION_ACCURACY = "25";
+  private final static String DEFAULT_LOCATION_ACCURACY = "20";
   private final static String DEFAULT_ATTEMPTS_NUMBER = "20";
 
   public static void initPreferences(Context context) {

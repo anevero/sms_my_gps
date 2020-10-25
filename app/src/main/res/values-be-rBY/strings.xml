@@ -54,7 +54,7 @@
     <string name="system_gps_switch_summary">Часам модуль GPS можа забяспечыць больш дакладнае месцазнаходжанне, чым Google Location Services (але гэта можа заняць да некалькіх хвілін).</string>
     <string name="system_gps_last_known_switch">Апошняе вядомае месцазнаходжанне (GPS)</string>
     <string name="system_gps_last_known_switch_summary">Атрымлівае апошняе вядомае месцазнаходжанне толькі ад датчыка GPS (Google Location Services можа выкарыстоўваць і іншыя датчыкі для гэтага).</string>
-    <string name="location_accuracy_dropdown">Мінімальная дакладнасць (метры)</string>
+    <string name="location_accuracy_dropdown">Неабходная дакладнасць (метры)</string>
     <string name="attempts_number_dropdown">Максімальная колькасць запытаў</string>
     <string name="run_on_startup_switch">Запускаць пасля загрузкі сістэмы</string>
     <string name="run_on_startup_switch_summary">Калі сэрвіс уключаны, ён будзе аўтаматычна запушчаны пасля перазагрузкі сістэмы.</string>
