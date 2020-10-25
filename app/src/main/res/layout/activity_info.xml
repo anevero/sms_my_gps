@@ -91,21 +91,6 @@
             android:text="@string/background_working_faq_label" />
 
         <TextView
-            android:id="@+id/last_known_location_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:text="@string/last_known_location_label"
-            android:textColor="@color/header_text_color"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/last_known_location_faq_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/last_known_location_faq_label" />
-
-        <TextView
             android:id="@+id/last_known_location_not_sent_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,21 +104,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/last_known_location_not_sent_faq_label" />
-
-        <TextView
-            android:id="@+id/system_gps_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:text="@string/system_gps_label"
-            android:textColor="@color/header_text_color"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/system_gps_faq_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/system_gps_faq_label" />
 
         <TextView
             android:id="@+id/location_permission_label"

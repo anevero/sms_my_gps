@@ -1,0 +1,60 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/location_providers_label">
+
+        <SwitchPreferenceCompat
+            android:key="@string/fused_location_enabled"
+            android:summary="@string/fused_switch_summary"
+            android:title="@string/fused_switch"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/fused_last_known_location_enabled"
+            android:summary="@string/fused_last_known_switch_summary"
+            android:title="@string/fused_last_known_switch"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/system_gps_enabled"
+            android:summary="@string/system_gps_switch_summary"
+            android:title="@string/system_gps_switch"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/system_gps_last_known_location_enabled"
+            android:summary="@string/system_gps_last_known_switch_summary"
+            android:title="@string/system_gps_last_known_switch"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/location_accuracy_label">
+
+        <DropDownPreference
+            android:entries="@array/location_accuracy_entries"
+            android:entryValues="@array/location_accuracy_entries_values"
+            android:key="@string/location_accuracy"
+            android:title="@string/location_accuracy_dropdown"
+            app:useSimpleSummaryProvider="true" />
+
+        <DropDownPreference
+            android:entries="@array/attempts_number_entries"
+            android:entryValues="@array/attempts_number_entries_values"
+            android:key="@string/attempts_number"
+            android:title="@string/attempts_number_dropdown"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/other_settings_label">
+
+        <SwitchPreferenceCompat
+            android:key="@string/run_on_startup_enabled"
+            android:summary="@string/run_on_startup_switch_summary"
+            android:title="@string/run_on_startup_switch"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

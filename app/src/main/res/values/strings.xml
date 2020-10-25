@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Version 3.3.0 (28)</string>
+    <string name="app_version">Version 3.4.0 (29)</string>
 
     <string name="add_item">Add item</string>
     <string name="edit_item">Edit item</string>
@@ -30,12 +30,8 @@
     <string name="how_to_faq_label">Just add a number and a message, to which the app should reply. When your phone gets this message from this number, the app will send the location as a reply to it.</string>
     <string name="background_working_label">Why does this app not work in the background?</string>
     <string name="background_working_faq_label">Due to Android restrictions, we can\'t guarantee that app will be able to always work in background. Ensure that this app is allowed to run in background (Settings - Apps). Disable battery saver mode.</string>
-    <string name="last_known_location_label">What is the difference between current and last known location?</string>
-    <string name="last_known_location_faq_label">Last known location can be sent almost immediately but can be quite outdated.</string>
     <string name="last_known_location_not_sent_label">Why does this app not send the last known location?</string>
     <string name="last_known_location_not_sent_faq_label">The app can send last known location only if the system can provide it. If Android can\'t provide the last known location (for example, because you had GPS disabled for a long time), the app won\'t send it.</string>
-    <string name="system_gps_label">What is the difference between Google Location Services and GPS?</string>
-    <string name="system_gps_faq_label">Google Location Services is almost always the preferred way to get the location. It uses different device sensors (including GPS) to obtain the location in several tens of seconds. However, sometimes GPS module can provide a more accurate location (but it can take up to several minutes).</string>
     <string name="location_permission_label">How does this app use location permission?</string>
     <string name="location_permission_faq_label">The app uses it to get the location after receiving an appropriate incoming SMS.</string>
     <string name="sms_permission_label">How does this app use SMS permission?</string>
@@ -46,10 +42,21 @@
     <string name="privacy_policy_faq_label">The app doesn\'t collect any data. Google Location services are used for location requests. Their use is regulated by <a href="https://policies.google.com/technologies/location-data">Google Privacy Policy</a>.</string>
     <string name="back_button">Back</string>
 
-    <string name="location_sources_label">Choose the location source to use. Every checkbox initiates sending the corresponding SMS.</string>
-    <string name="fused_checkbox">Google Location Services</string>
-    <string name="fused_last_known_checkbox">Last known location (Google Location Services)</string>
-    <string name="system_gps_checkbox">GPS</string>
-    <string name="system_gps_last_known_checkbox">Last known location (GPS)</string>
+    <string name="location_providers_label">Location providers</string>
+    <string name="location_accuracy_label">Location accuracy</string>
+    <string name="other_settings_label">Other settings</string>
+
+    <string name="fused_switch">Google Location Services</string>
+    <string name="fused_switch_summary">Uses different sensors (including GPS) to get quite accurate location in several tens of seconds.</string>
+    <string name="fused_last_known_switch">Last known location (Google Location Services)</string>
+    <string name="fused_last_known_switch_summary">Last known location can be sent almost immediately (if available) but can be quite outdated.</string>
+    <string name="system_gps_switch">GPS</string>
+    <string name="system_gps_switch_summary">Sometimes GPS module can provide a more accurate location than Google Location Services (but it can take up to several minutes).</string>
+    <string name="system_gps_last_known_switch">Last known location (GPS)</string>
+    <string name="system_gps_last_known_switch_summary">Gets the last known location info only from the GPS sensor (Google Location Services can also use some other sensors for that).</string>
+    <string name="location_accuracy_dropdown">Minimum accuracy (meters)</string>
+    <string name="attempts_number_dropdown">Maximum location requests number</string>
+    <string name="run_on_startup_switch">Run on system startup</string>
+    <string name="run_on_startup_switch_summary">If the service is enabled, it will start automatically after system restart.</string>
 
 </resources>

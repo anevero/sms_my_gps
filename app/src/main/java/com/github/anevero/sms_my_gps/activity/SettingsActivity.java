@@ -13,45 +13,19 @@ import com.github.anevero.sms_my_gps.data.Preferences;
 import java.util.Objects;
 
 public class SettingsActivity extends AppCompatActivity {
-  private AppCompatCheckBox fusedCheckbox;
-  private AppCompatCheckBox fusedLastKnownCheckbox;
-  private AppCompatCheckBox systemGpsCheckbox;
-  private AppCompatCheckBox systemGpsLastKnownCheckbox;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     setContentView(R.layout.activity_settings);
     Objects.requireNonNull(getSupportActionBar())
            .setDisplayHomeAsUpEnabled(true);
 
-    fusedCheckbox = findViewById(R.id.fused_checkbox);
-    fusedLastKnownCheckbox = findViewById(R.id.fused_last_known_checkbox);
-    systemGpsCheckbox = findViewById(R.id.system_gps_checkbox);
-    systemGpsLastKnownCheckbox =
-            findViewById(R.id.system_gps_last_known_checkbox);
-
-    fusedCheckbox.setChecked(
-            Preferences.isFusedLocationEnabled(this));
-    fusedLastKnownCheckbox.setChecked(
-            Preferences.isFusedLastKnownLocationEnabled(this));
-    systemGpsCheckbox.setChecked(
-            Preferences.isSystemGpsEnabled(this));
-    systemGpsLastKnownCheckbox.setChecked(
-            Preferences.isSystemLastKnownLocationEnabled(this));
-
-    fusedCheckbox.setOnClickListener(
-            v -> Preferences.setFusedLocationEnabled(
-                    v.getContext(), fusedCheckbox.isChecked()));
-    fusedLastKnownCheckbox.setOnClickListener(
-            v -> Preferences.setFusedLastKnownLocationEnabled(
-                    v.getContext(), fusedLastKnownCheckbox.isChecked()));
-    systemGpsCheckbox.setOnClickListener(
-            v -> Preferences.setSystemGpsEnabled(
-                    v.getContext(), systemGpsCheckbox.isChecked()));
-    systemGpsLastKnownCheckbox.setOnClickListener(
-            v -> Preferences.setSystemLastKnownLocationEnabled(
-                    v.getContext(), systemGpsLastKnownCheckbox.isChecked()));
+    getSupportFragmentManager()
+            .beginTransaction()
+            .replace(R.id.settings_container, new SettingsFragment())
+            .commit();
   }
 
   @Override

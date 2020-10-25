@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    Preferences.initPreferences(this);
+
     enableServiceSwitch = findViewById(R.id.enable_service_switch);
     updateServiceSwitchStatus();
     enableServiceSwitch.setOnClickListener(v -> {

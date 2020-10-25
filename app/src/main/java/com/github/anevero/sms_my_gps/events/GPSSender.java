@@ -6,19 +6,19 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.github.anevero.sms_my_gps.data.Preferences;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-
-import java.util.ArrayList;
 
 public final class GPSSender {
   private static final String TAG = "GPSSender";
@@ -30,102 +30,157 @@ public final class GPSSender {
     LocationManager systemLocationProvider = (LocationManager) context
             .getSystemService(Context.LOCATION_SERVICE);
 
+    int minimumLocationAccuracy = Preferences.getLocationAccuracy(context);
+    int maximumAttemptsNumber = Preferences.getAttemptsNumber(context);
+
     if (Preferences.isFusedLocationEnabled(context)) {
-      SMSLocationListener listener =
-              new SMSLocationListener(recipient, false, false);
-      fusedLocationProvider
-              .getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, null)
-              .addOnCompleteListener(listener);
+      LocationRequest locationRequest = new LocationRequest()
+              .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+              .setInterval(5000);
+      LocationCallback locationCallback = new FusedLocationCallback(
+              fusedLocationProvider, recipient,
+              minimumLocationAccuracy, maximumAttemptsNumber);
+      fusedLocationProvider.requestLocationUpdates(
+              locationRequest, locationCallback, null);
     }
 
     if (Preferences.isFusedLastKnownLocationEnabled(context)) {
-      SMSLocationListener listener =
-              new SMSLocationListener(recipient, true, false);
+      OnCompleteListener<Location> listener =
+              new FusedOnCompleteListener(recipient);
       fusedLocationProvider.getLastLocation().addOnCompleteListener(listener);
     }
 
     if (Preferences.isSystemGpsEnabled(context)) {
-      SMSLocationListener listener =
-              new SMSLocationListener(recipient, false, true);
-      systemLocationProvider.requestSingleUpdate(
-              LocationManager.GPS_PROVIDER, listener, null);
+      LocationListener listener = new SystemGpsLocationListener(
+              systemLocationProvider, recipient,
+              minimumLocationAccuracy, maximumAttemptsNumber);
+      systemLocationProvider.requestLocationUpdates(
+              LocationManager.GPS_PROVIDER, 5000, 0, listener);
     }
 
     if (Preferences.isSystemLastKnownLocationEnabled(context)) {
-      SMSLocationListener listener =
-              new SMSLocationListener(recipient, true, true);
       Location location = systemLocationProvider.getLastKnownLocation(
               LocationManager.GPS_PROVIDER);
+      Log.i(TAG, "Received last known location from system provider");
       if (location != null) {
-        listener.onLocationChanged(location);
+        Log.i(TAG, "Sending last known location from system provider");
+        (new SMSSender(recipient, location, true, true)).sendMessage();
       }
     }
   }
 
-  private static final class SMSLocationListener
-          implements OnCompleteListener<Location>, LocationListener {
-    final private String recipient;
-    final private boolean lastKnownLocation;
-    final private boolean systemGpsProvider;
+  // Location callback implementation for requesting updates from fused
+  // location provider.
+  private static class FusedLocationCallback extends LocationCallback {
+    private final FusedLocationProviderClient provider;
+    private final String recipient;
+    private final int minimumLocationAccuracy;
+    private final int maximumAttemptsNumber;
+    private int currentAttemptsNumber;
 
-    public SMSLocationListener(String recipient, boolean lastKnownLocation,
-                               boolean systemGpsProvider) {
+    public FusedLocationCallback(FusedLocationProviderClient provider,
+                                 String recipient,
+                                 int minimumLocationAccuracy,
+                                 int maximumAttemptsNumber) {
+      this.provider = provider;
       this.recipient = recipient;
-      this.lastKnownLocation = lastKnownLocation;
-      this.systemGpsProvider = systemGpsProvider;
+      this.minimumLocationAccuracy = minimumLocationAccuracy;
+      this.maximumAttemptsNumber = maximumAttemptsNumber;
+      this.currentAttemptsNumber = 0;
+    }
+
+    @Override
+    public void onLocationAvailability(
+            LocationAvailability locationAvailability) {
+    }
+
+    @Override
+    public void onLocationResult(LocationResult result) {
+      ++currentAttemptsNumber;
+      Log.i(TAG, "Received current location from fused provider, attempt " +
+                 currentAttemptsNumber);
+
+      Location location = result.getLastLocation();
+      if (location == null) {
+        Log.i(TAG, "Skipping location from fused provider: location is null");
+        return;
+      }
+      if (currentAttemptsNumber < maximumAttemptsNumber &&
+          location.getAccuracy() > minimumLocationAccuracy) {
+        Log.i(TAG, "Skipping location from fused provider: accuracy is " +
+                   location.getAccuracy());
+        return;
+      }
+
+      Log.i(TAG, "Sending current location from fused provider");
+      provider.removeLocationUpdates(this);
+      (new SMSSender(recipient, location, false, false)).sendMessage();
+    }
+  }
+
+  // OnComplete listener for sending last known location received from fused
+  // location provider.
+  private static final class FusedOnCompleteListener
+          implements OnCompleteListener<Location> {
+    private final String recipient;
+
+    public FusedOnCompleteListener(String recipient) {
+      this.recipient = recipient;
     }
 
     @Override
     public void onComplete(@NonNull Task<Location> task) {
-      if (lastKnownLocation) {
-        Log.i(TAG, "Received last known location from fused provider");
-      } else {
-        Log.i(TAG, "Received current location from fused provider");
-      }
-
+      Log.i(TAG, "Received last known location from fused provider");
       Location location = task.getResult();
       if (location == null) {
         return;
       }
 
-      sendMessage(location);
+      Log.i(TAG, "Sending last known location from fused provider");
+      (new SMSSender(recipient, location, true, false)).sendMessage();
     }
+  }
 
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
-      Log.i(TAG, "Received current location from system provider");
-      sendMessage(location);
+  // Location listener implementation for requesting updates from system
+  // GPS location provider.
+  private static class SystemGpsLocationListener implements LocationListener {
+    private final LocationManager provider;
+    private final String recipient;
+    private final int minimumLocationAccuracy;
+    private final int maximumAttemptsNumber;
+    private int currentAttemptsNumber;
+
+    public SystemGpsLocationListener(LocationManager provider,
+                                     String recipient,
+                                     int minimumLocationAccuracy,
+                                     int maximumAttemptsNumber) {
+      this.provider = provider;
+      this.recipient = recipient;
+      this.minimumLocationAccuracy = minimumLocationAccuracy;
+      this.maximumAttemptsNumber = maximumAttemptsNumber;
+      this.currentAttemptsNumber = 0;
     }
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
     }
 
-    private void sendMessage(@NonNull Location location) {
-      SmsManager smsManager = SmsManager.getDefault();
-      ArrayList<String> messages = smsManager.divideMessage(
-              generateBasicMessage(location));
-      smsManager.sendMultipartTextMessage(
-              recipient, null, messages, null, null);
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+      ++currentAttemptsNumber;
+      Log.i(TAG, "Received current location from system provider, attempt " +
+                 currentAttemptsNumber);
 
-      Log.i(TAG, "Sent message with location");
-    }
+      if (currentAttemptsNumber < maximumAttemptsNumber &&
+          location.getAccuracy() > minimumLocationAccuracy) {
+        Log.i(TAG, "Skipping location from system provider: accuracy is " +
+                   location.getAccuracy());
+        return;
+      }
 
-    private String generateBasicMessage(Location location) {
-      double lat = location.getLatitude();
-      double lon = location.getLongitude();
-      float accuracy = location.getAccuracy();
-      float speed = location.getSpeed();
-      String locationType = ((lastKnownLocation) ? "Last known" : "Current") +
-                            ((systemGpsProvider) ? ", GPS" : "");
-
-      return String.format(
-              "%1$s:\n" +
-              "https://www.google.com/maps/search/?api=1&query=%2$s,%3$s\n" +
-              "Accuracy: %4$s m\n" +
-              "Speed: %5$s m/sec",
-              locationType,
-              lat, lon, accuracy, speed);
+      Log.i(TAG, "Sending current location from system provider");
+      provider.removeUpdates(this);
+      (new SMSSender(recipient, location, false, true)).sendMessage();
     }
   }
 }

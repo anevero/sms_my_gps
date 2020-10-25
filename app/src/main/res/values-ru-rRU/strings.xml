@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версия 3.3.0 (28)</string>
+    <string name="app_version">Версия 3.4.0 (29)</string>
 
     <string name="add_item">Добавить запись</string>
     <string name="edit_item">Редактировать запись</string>
@@ -30,12 +30,8 @@
     <string name="how_to_faq_label">Просто добавьте номер и сообщение, на которое приложение должно ответить. Когда ваш телефон получит это сообщение с этого номера, приложение отправит местоположение в ответ на него.</string>
     <string name="background_working_label">Почему приложение не работает в фоне?</string>
     <string name="background_working_faq_label">Из-за ограничений Android мы не можем гарантировать, что приложение всегда будет работать в фоновом режиме. Убедитесь, что этому приложению разрешено работать в фоновом режиме (Настройки - Приложения). Отключите режим экономии заряда батареи.</string>
-    <string name="last_known_location_label">Чем отличаются текущее и последнее известное местоположение?</string>
-    <string name="last_known_location_faq_label">Последнее известное местоположение может быть отправлено мгновенно, но может быть довольно устаревшим.</string>
     <string name="last_known_location_not_sent_label">Почему приложение не отправляет последнее известное местоположение?</string>
     <string name="last_known_location_not_sent_faq_label">Приложение может отправить последнее известное местоположение, только если система может его предоставить. Если Android не может предоставить последнее известное местоположение (например, потому что GPS был долго отключен), приложение его не отправит.</string>
-    <string name="system_gps_label">Чем отличаются Google Location Services и GPS?</string>
-    <string name="system_gps_faq_label">Для получения местоположения почти всегда лучше всего использовать Google Location Services. Этот сервис использует различные датчики устройства (включая GPS) для определения местоположения за несколько десятков секунд. Тем не менее, иногда модуль GPS может предоставить более точное местоположение (но это может занять до нескольких минут).</string>
     <string name="location_permission_label">Как приложение использует разрешение на доступ к местоположению?</string>
     <string name="location_permission_faq_label">Приложение использует его, чтобы получить местоположение после получения соответствующего входящего SMS.</string>
     <string name="sms_permission_label">Как приложение использует разрешение на доступ к SMS?</string>
@@ -46,10 +42,21 @@
     <string name="privacy_policy_faq_label">Приложение не собирает никаких данных. Для запросов местоположения используются службы местоположения Google. Их использование регулируется <a href="https://policies.google.com/technologies/location-data">Политикой конфиденциальности Google</a>.</string>
     <string name="back_button">Назад</string>
 
-    <string name="location_sources_label">Выберите источники получения местоположения. Каждый пункт инициирует отправку соответствующего SMS.</string>
-    <string name="fused_checkbox">Google Location Services</string>
-    <string name="fused_last_known_checkbox">Последнее известное местоположение (Google Location Services)</string>
-    <string name="system_gps_checkbox">GPS</string>
-    <string name="system_gps_last_known_checkbox">Последнее известное местоположение (GPS)</string>
+    <string name="location_providers_label">Источники данных о местоположении</string>
+    <string name="location_accuracy_label">Точность местоположения</string>
+    <string name="other_settings_label">Другие настройки</string>
+
+    <string name="fused_switch">Google Location Services</string>
+    <string name="fused_switch_summary">Использует разные датчики устройства (в том числе GPS), чтобы получить местоположение за несколько десятков секунд.</string>
+    <string name="fused_last_known_switch">Последнее известное местоположение (Google Location Services)</string>
+    <string name="fused_last_known_switch_summary">Последнее известное местоположение может быть отправлено мгновенно (если доступно), но может быть довольно устаревшим.</string>
+    <string name="system_gps_switch">GPS</string>
+    <string name="system_gps_switch_summary">Иногда модуль GPS может предоставить более точное местоположение, чем Google Location Services (но это может занять до нескольких минут).</string>
+    <string name="system_gps_last_known_switch">Последнее известное местоположение (GPS)</string>
+    <string name="system_gps_last_known_switch_summary">Получает последнее известное местоположение только от датчика GPS (Google Location Services может использовать и другие датчики для этого).</string>
+    <string name="location_accuracy_dropdown">Минимальная точность (метры)</string>
+    <string name="attempts_number_dropdown">Максимальное количество запросов</string>
+    <string name="run_on_startup_switch">Запускать после загрузки системы</string>
+    <string name="run_on_startup_switch_summary">Если сервис активирован, он будет автоматически запущен после перезагрузки системы.</string>
 
 </resources>
