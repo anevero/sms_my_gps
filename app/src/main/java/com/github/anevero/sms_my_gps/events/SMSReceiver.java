@@ -1,14 +1,14 @@
 package com.github.anevero.sms_my_gps.events;
 
-import com.github.anevero.sms_my_gps.data.ListItem;
-import com.github.anevero.sms_my_gps.data.Preferences;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
+
+import com.github.anevero.sms_my_gps.data.ListItem;
+import com.github.anevero.sms_my_gps.data.Preferences;
 
 import java.util.ArrayList;
 

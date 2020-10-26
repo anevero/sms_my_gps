@@ -1,9 +1,5 @@
 package com.github.anevero.sms_my_gps.activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -13,6 +9,10 @@ import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.anevero.sms_my_gps.R;
 import com.github.anevero.sms_my_gps.data.Constants;

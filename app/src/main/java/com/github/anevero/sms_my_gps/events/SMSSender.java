@@ -5,7 +5,6 @@ import android.telephony.SmsManager;
 
 import androidx.annotation.NonNull;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -44,10 +43,11 @@ public class SMSSender {
             "%1$s:\n" +
             "https://www.google.com/maps/search/?api=1&query=%2$s,%3$s\n" +
             "Accuracy: %4$s m\n" +
-            "Speed: %5$s m/sec",
+            "Speed: %5$s km/h",
             locationType,
             String.format(Locale.US, "%.6f", lat),
             String.format(Locale.US, "%.6f", lon),
-            accuracy, speed);
+            Math.round(accuracy),
+            Math.round(3.6 * speed));
   }
 }

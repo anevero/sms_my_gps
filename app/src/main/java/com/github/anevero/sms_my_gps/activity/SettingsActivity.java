@@ -1,14 +1,12 @@
 package com.github.anevero.sms_my_gps.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatCheckBox;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.github.anevero.sms_my_gps.R;
-import com.github.anevero.sms_my_gps.data.Preferences;
 
 import java.util.Objects;
 
