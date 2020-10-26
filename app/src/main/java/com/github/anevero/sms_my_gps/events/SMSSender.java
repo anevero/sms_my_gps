@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SMSSender {
   private final String recipient;
@@ -39,13 +40,14 @@ public class SMSSender {
     String locationType = ((lastKnownLocation) ? "Last known" : "Current") +
                           ((systemGpsProvider) ? ", GPS" : "");
 
-    DecimalFormat df = new DecimalFormat("#.0000000");
-
     return String.format(
             "%1$s:\n" +
             "https://www.google.com/maps/search/?api=1&query=%2$s,%3$s\n" +
             "Accuracy: %4$s m\n" +
             "Speed: %5$s m/sec",
-            locationType, df.format(lat), df.format(lon), accuracy, speed);
+            locationType,
+            String.format(Locale.US, "%.6f", lat),
+            String.format(Locale.US, "%.6f", lon),
+            accuracy, speed);
   }
 }
