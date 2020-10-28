@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.github.anevero.sms_my_gps.R;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -12,6 +14,12 @@ import java.util.Objects;
 public final class Preferences {
   private final static String DEFAULT_LOCATION_ACCURACY = "20";
   private final static String DEFAULT_ATTEMPTS_NUMBER = "20";
+
+  public static boolean areGooglePlayServicesAvailable(Context context) {
+    GoogleApiAvailability instance = GoogleApiAvailability.getInstance();
+    return instance.isGooglePlayServicesAvailable(context) ==
+           ConnectionResult.SUCCESS;
+  }
 
   public static void initPreferences(Context context) {
     SharedPreferences preferences =
@@ -24,12 +32,19 @@ public final class Preferences {
     SharedPreferences.Editor editor = preferences.edit();
     editor.putBoolean(context.getString(R.string.preferences_initialized),
                       true);
-    editor.putBoolean(context.getString(R.string.fused_location_enabled),
-                      true);
     editor.putString(context.getString(R.string.location_accuracy),
                      DEFAULT_LOCATION_ACCURACY);
     editor.putString(context.getString(R.string.attempts_number),
                      DEFAULT_ATTEMPTS_NUMBER);
+
+    if (areGooglePlayServicesAvailable(context)) {
+      editor.putBoolean(context.getString(R.string.fused_location_enabled),
+                        true);
+    } else {
+      editor.putBoolean(context.getString(R.string.system_gps_enabled),
+                        true);
+    }
+
     editor.apply();
   }
 

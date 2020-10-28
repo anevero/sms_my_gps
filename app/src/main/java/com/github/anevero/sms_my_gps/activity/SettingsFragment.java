@@ -7,6 +7,10 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.github.anevero.sms_my_gps.R;
+import com.github.anevero.sms_my_gps.data.Preferences;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.GoogleApiActivity;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
   private SwitchPreferenceCompat fusedSwitch;
@@ -18,7 +22,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
   private DropDownPreference attemptsNumberPreference;
 
   private SwitchPreferenceCompat runOnStartupSwitch;
-
 
   @Override
   public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -50,5 +53,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     attemptsNumberPreference.setSingleLineTitle(false);
 
     runOnStartupSwitch.setSingleLineTitle(false);
+
+    if (!Preferences.areGooglePlayServicesAvailable(getActivity())) {
+      fusedSwitch.setEnabled(false);
+      fusedLastKnownSwitch.setEnabled(false);
+    }
   }
 }
