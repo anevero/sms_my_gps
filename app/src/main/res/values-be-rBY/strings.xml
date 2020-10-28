@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версія 3.4.3 (32)</string>
+    <string name="app_version">Версія 3.4.4 (33)</string>
 
     <string name="add_item">Дадаць запіс</string>
     <string name="edit_item">Рэдагаваць запіс</string>
@@ -53,7 +53,11 @@
     <string name="system_gps_switch">GPS</string>
     <string name="system_gps_switch_summary">Часам модуль GPS можа забяспечыць больш дакладнае месцазнаходжанне, чым Google Location Services (але гэта можа заняць да некалькіх хвілін).</string>
     <string name="system_gps_last_known_switch">Апошняе вядомае месцазнаходжанне (GPS)</string>
-    <string name="system_gps_last_known_switch_summary">Атрымлівае апошняе вядомае месцазнаходжанне толькі ад датчыка GPS (Google Location Services можа выкарыстоўваць і іншыя датчыкі для гэтага).</string>
+    <string name="system_gps_last_known_switch_summary">Атрымлівае апошняе вядомае месцазнаходжанне, выкарыстоўваючы толькі датчык GPS.</string>
+    <string name="system_network_switch">Сетка</string>
+    <string name="system_network_switch_summary">Выкарыстоўвае сотавую і даступныя WiFi-сеткі, каб вызначыць месцазнаходжанне. Яно можа быць менш дакладным, чым пры выкарыстанні GPS, але атрымаць яго можна хутчэй.</string>
+    <string name="system_network_last_known_switch">Апошняе вядомае месцазнаходжанне (сетка)</string>
+    <string name="system_network_last_known_switch_summary">Атрымлівае апошняе вядомае месцазнаходжанне, выкарыстоўваючы толькі інфармацыю аб сетках.</string>
     <string name="location_accuracy_dropdown">Неабходная дакладнасць (метры)</string>
     <string name="attempts_number_dropdown">Максімальная колькасць запытаў</string>
     <string name="run_on_startup_switch">Запускаць пасля загрузкі сістэмы</string>

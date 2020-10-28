@@ -2,6 +2,7 @@ package com.github.anevero.sms_my_gps.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
 import android.preference.PreferenceManager;
 
 import com.github.anevero.sms_my_gps.R;
@@ -38,11 +39,9 @@ public final class Preferences {
                      DEFAULT_ATTEMPTS_NUMBER);
 
     if (areGooglePlayServicesAvailable(context)) {
-      editor.putBoolean(context.getString(R.string.fused_location_enabled),
-                        true);
+      editor.putBoolean(context.getString(R.string.fused_enabled), true);
     } else {
-      editor.putBoolean(context.getString(R.string.system_gps_enabled),
-                        true);
+      editor.putBoolean(context.getString(R.string.system_gps_enabled), true);
     }
 
     editor.apply();
@@ -93,20 +92,26 @@ public final class Preferences {
   }
 
   public static boolean isFusedLocationEnabled(Context context) {
-    return isOptionEnabled(context, R.string.fused_location_enabled);
+    return isOptionEnabled(context, R.string.fused_enabled);
   }
 
-  public static boolean isFusedLastKnownLocationEnabled(Context context) {
-    return isOptionEnabled(context, R.string.fused_last_known_location_enabled);
+  public static boolean isFusedLastKnownEnabled(Context context) {
+    return isOptionEnabled(context, R.string.fused_last_known_enabled);
   }
 
-  public static boolean isSystemGpsEnabled(Context context) {
-    return isOptionEnabled(context, R.string.system_gps_enabled);
+  public static boolean isSystemProviderEnabled(Context context,
+                                                String provider) {
+    int option = (provider.equals(LocationManager.GPS_PROVIDER)) ?
+                 R.string.system_gps_enabled : R.string.system_network_enabled;
+    return isOptionEnabled(context, option);
   }
 
-  public static boolean isSystemLastKnownLocationEnabled(Context context) {
-    return isOptionEnabled(context,
-                           R.string.system_gps_last_known_location_enabled);
+  public static boolean isSystemProviderLastKnownEnabled(Context context,
+                                                         String provider) {
+    int option = (provider.equals(LocationManager.GPS_PROVIDER)) ?
+                 R.string.system_gps_last_known_enabled :
+                 R.string.system_network_last_known_enabled;
+    return isOptionEnabled(context, option);
   }
 
   public static int getLocationAccuracy(Context context) {

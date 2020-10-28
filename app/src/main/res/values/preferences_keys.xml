@@ -7,10 +7,12 @@
 
     <string name="run_on_startup_enabled">run_on_startup_enabled</string>
 
-    <string name="fused_location_enabled">fused_location_enabled</string>
-    <string name="fused_last_known_location_enabled">fused_last_known_location_enabled</string>
+    <string name="fused_enabled">fused_enabled</string>
+    <string name="fused_last_known_enabled">fused_last_known_enabled</string>
     <string name="system_gps_enabled">system_gps_enabled</string>
-    <string name="system_gps_last_known_location_enabled">system_last_known_location_enabled</string>
+    <string name="system_gps_last_known_enabled">system_gps_last_known_enabled</string>
+    <string name="system_network_enabled">system_network_enabled</string>
+    <string name="system_network_last_known_enabled">system_network_last_known_enabled</string>
 
     <string name="location_accuracy">location_accuracy</string>
     <string name="attempts_number">attempts_number</string>

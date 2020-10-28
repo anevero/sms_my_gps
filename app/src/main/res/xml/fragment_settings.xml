@@ -4,13 +4,13 @@
     <PreferenceCategory android:title="@string/location_providers_label">
 
         <SwitchPreferenceCompat
-            android:key="@string/fused_location_enabled"
+            android:key="@string/fused_enabled"
             android:summary="@string/fused_switch_summary"
             android:title="@string/fused_switch"
             app:useSimpleSummaryProvider="true" />
 
         <SwitchPreferenceCompat
-            android:key="@string/fused_last_known_location_enabled"
+            android:key="@string/fused_last_known_enabled"
             android:summary="@string/fused_last_known_switch_summary"
             android:title="@string/fused_last_known_switch"
             app:useSimpleSummaryProvider="true" />
@@ -22,9 +22,21 @@
             app:useSimpleSummaryProvider="true" />
 
         <SwitchPreferenceCompat
-            android:key="@string/system_gps_last_known_location_enabled"
+            android:key="@string/system_gps_last_known_enabled"
             android:summary="@string/system_gps_last_known_switch_summary"
             android:title="@string/system_gps_last_known_switch"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/system_network_enabled"
+            android:summary="@string/system_network_switch_summary"
+            android:title="@string/system_network_switch"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/system_network_last_known_enabled"
+            android:summary="@string/system_network_last_known_switch_summary"
+            android:title="@string/system_network_last_known_switch"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
@@ -50,10 +62,10 @@
     <PreferenceCategory android:title="@string/other_settings_label">
 
         <SwitchPreferenceCompat
+            android:enabled="false"
             android:key="@string/run_on_startup_enabled"
             android:summary="@string/run_on_startup_switch_summary"
             android:title="@string/run_on_startup_switch"
-            android:enabled="false"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>

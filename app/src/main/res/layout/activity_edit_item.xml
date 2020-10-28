@@ -59,7 +59,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="24dp">
+            android:paddingTop="16dp">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/delete_button"

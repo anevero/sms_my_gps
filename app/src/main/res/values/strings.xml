@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Version 3.4.3 (32)</string>
+    <string name="app_version">Version 3.4.4 (33)</string>
 
     <string name="add_item">Add item</string>
     <string name="edit_item">Edit item</string>
@@ -53,7 +53,11 @@
     <string name="system_gps_switch">GPS</string>
     <string name="system_gps_switch_summary">Sometimes GPS module can provide a more accurate location than Google Location Services (but it can take up to several minutes).</string>
     <string name="system_gps_last_known_switch">Last known location (GPS)</string>
-    <string name="system_gps_last_known_switch_summary">Gets the last known location info only from the GPS sensor (Google Location Services can also use some other sensors for that).</string>
+    <string name="system_gps_last_known_switch_summary">Gets the last known location using only the GPS sensor.</string>
+    <string name="system_network_switch">Network</string>
+    <string name="system_network_switch_summary">Uses cellular and nearest WiFi networks to determine the location. Can be less accurate, than GPS, but works faster.</string>
+    <string name="system_network_last_known_switch">Last known location (network)</string>
+    <string name="system_network_last_known_switch_summary">Gets the last known location using only the network info.</string>
     <string name="location_accuracy_dropdown">Necessary accuracy (meters)</string>
     <string name="attempts_number_dropdown">Maximum location requests number</string>
     <string name="run_on_startup_switch">Run on system startup</string>

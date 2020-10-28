@@ -1,6 +1,7 @@
 package com.github.anevero.sms_my_gps.events;
 
 import android.location.Location;
+import android.location.LocationManager;
 import android.telephony.SmsManager;
 
 import androidx.annotation.NonNull;
@@ -12,14 +13,14 @@ public class SMSSender {
   private final String recipient;
   private final Location location;
   private final boolean lastKnownLocation;
-  private final boolean systemGpsProvider;
+  private final String systemProvider;
 
   public SMSSender(String recipient, @NonNull Location location,
-                   boolean lastKnownLocation, boolean systemGpsProvider) {
+                   boolean lastKnownLocation, String systemProvider) {
     this.recipient = recipient;
     this.lastKnownLocation = lastKnownLocation;
-    this.systemGpsProvider = systemGpsProvider;
     this.location = location;
+    this.systemProvider = systemProvider;
   }
 
   public void sendMessage() {
@@ -36,8 +37,20 @@ public class SMSSender {
     float accuracy = location.getAccuracy();
     float speed = location.getSpeed();
 
+    String providerName;
+    if (systemProvider == null) {
+      providerName = "";
+    } else if (systemProvider.equals(LocationManager.GPS_PROVIDER)) {
+      providerName = ", GPS";
+    } else if (systemProvider.equals(LocationManager.NETWORK_PROVIDER)) {
+      providerName = ", network";
+    } else {
+      //  Impossible.
+      providerName = ", unknown";
+    }
+
     String locationType = ((lastKnownLocation) ? "Last known" : "Current") +
-                          ((systemGpsProvider) ? ", GPS" : "");
+                          providerName;
 
     return String.format(
             "%1$s:\n" +

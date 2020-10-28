@@ -8,15 +8,14 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import com.github.anevero.sms_my_gps.R;
 import com.github.anevero.sms_my_gps.data.Preferences;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.GoogleApiActivity;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
   private SwitchPreferenceCompat fusedSwitch;
   private SwitchPreferenceCompat fusedLastKnownSwitch;
   private SwitchPreferenceCompat systemGpsSwitch;
   private SwitchPreferenceCompat systemGpsLastKnownSwitch;
+  private SwitchPreferenceCompat systemNetworkSwitch;
+  private SwitchPreferenceCompat systemNetworkLastKnownSwitch;
 
   private DropDownPreference locationAccuracyPreference;
   private DropDownPreference attemptsNumberPreference;
@@ -28,13 +27,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     setPreferencesFromResource(R.xml.fragment_settings, rootKey);
 
     fusedSwitch = getPreferenceScreen().findPreference(
-            getString(R.string.fused_location_enabled));
+            getString(R.string.fused_enabled));
     fusedLastKnownSwitch = getPreferenceScreen().findPreference(
-            getString(R.string.fused_last_known_location_enabled));
+            getString(R.string.fused_last_known_enabled));
     systemGpsSwitch = getPreferenceScreen().findPreference(
             getString(R.string.system_gps_enabled));
     systemGpsLastKnownSwitch = getPreferenceScreen().findPreference(
-            getString(R.string.system_gps_last_known_location_enabled));
+            getString(R.string.system_gps_last_known_enabled));
+    systemNetworkSwitch = getPreferenceScreen().findPreference(
+            getString(R.string.system_network_enabled));
+    systemNetworkLastKnownSwitch = getPreferenceScreen().findPreference(
+            getString(R.string.system_network_last_known_enabled));
 
     locationAccuracyPreference = getPreferenceScreen().findPreference(
             getString(R.string.location_accuracy));
@@ -48,6 +51,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     fusedLastKnownSwitch.setSingleLineTitle(false);
     systemGpsSwitch.setSingleLineTitle(false);
     systemGpsLastKnownSwitch.setSingleLineTitle(false);
+    systemNetworkSwitch.setSingleLineTitle(false);
+    systemNetworkLastKnownSwitch.setSingleLineTitle(false);
 
     locationAccuracyPreference.setSingleLineTitle(false);
     attemptsNumberPreference.setSingleLineTitle(false);

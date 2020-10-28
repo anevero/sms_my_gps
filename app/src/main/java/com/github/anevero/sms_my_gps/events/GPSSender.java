@@ -25,13 +25,28 @@ public final class GPSSender {
 
   @SuppressLint("MissingPermission")
   public static void notify(Context context, String recipient) {
-    FusedLocationProviderClient fusedLocationProvider = LocationServices
-            .getFusedLocationProviderClient(context);
-    LocationManager systemLocationProvider = (LocationManager) context
-            .getSystemService(Context.LOCATION_SERVICE);
-
     int minimumLocationAccuracy = Preferences.getLocationAccuracy(context);
     int maximumAttemptsNumber = Preferences.getAttemptsNumber(context);
+
+    notifyFusedProvider(context, recipient, minimumLocationAccuracy,
+                        maximumAttemptsNumber);
+    notifySystemProvider(context, recipient, LocationManager.GPS_PROVIDER,
+                         minimumLocationAccuracy, maximumAttemptsNumber);
+    notifySystemProvider(context, recipient, LocationManager.NETWORK_PROVIDER,
+                         minimumLocationAccuracy, maximumAttemptsNumber);
+  }
+
+  @SuppressLint("MissingPermission")
+  private static void notifyFusedProvider(Context context, String recipient,
+                                          int minimumLocationAccuracy,
+                                          int maximumAttemptsNumber) {
+    FusedLocationProviderClient fusedLocationProvider =
+            (Preferences.areGooglePlayServicesAvailable(context)) ?
+            LocationServices.getFusedLocationProviderClient(context) : null;
+
+    if (fusedLocationProvider == null) {
+      return;
+    }
 
     if (Preferences.isFusedLocationEnabled(context)) {
       LocationRequest locationRequest = new LocationRequest()
@@ -44,27 +59,41 @@ public final class GPSSender {
               locationRequest, locationCallback, null);
     }
 
-    if (Preferences.isFusedLastKnownLocationEnabled(context)) {
+    if (Preferences.isFusedLastKnownEnabled(context)) {
       OnCompleteListener<Location> listener =
               new FusedOnCompleteListener(recipient);
       fusedLocationProvider.getLastLocation().addOnCompleteListener(listener);
     }
+  }
 
-    if (Preferences.isSystemGpsEnabled(context)) {
+  @SuppressLint("MissingPermission")
+  private static void notifySystemProvider(Context context, String recipient,
+                                           String provider,
+                                           int minimumLocationAccuracy,
+                                           int maximumAttemptsNumber) {
+    LocationManager systemLocationProvider = (LocationManager) context
+            .getSystemService(Context.LOCATION_SERVICE);
+
+    if (!systemLocationProvider.isProviderEnabled(provider)) {
+      Log.i(TAG, "Provider '" + provider + "' not enabled");
+      return;
+    }
+
+    if (Preferences.isSystemProviderEnabled(context, provider)) {
       LocationListener listener = new SystemGpsLocationListener(
               systemLocationProvider, recipient,
               minimumLocationAccuracy, maximumAttemptsNumber);
       systemLocationProvider.requestLocationUpdates(
-              LocationManager.GPS_PROVIDER, 5000, 0, listener);
+              provider, 5000, 0, listener);
     }
 
-    if (Preferences.isSystemLastKnownLocationEnabled(context)) {
+    if (Preferences.isSystemProviderLastKnownEnabled(context, provider)) {
       Location location = systemLocationProvider.getLastKnownLocation(
-              LocationManager.GPS_PROVIDER);
+              provider);
       Log.i(TAG, "Received last known location from system provider");
       if (location != null) {
         Log.i(TAG, "Sending last known location from system provider");
-        (new SMSSender(recipient, location, true, true)).sendMessage();
+        (new SMSSender(recipient, location, true, provider)).sendMessage();
       }
     }
   }
@@ -114,7 +143,7 @@ public final class GPSSender {
 
       Log.i(TAG, "Sending current location from fused provider");
       provider.removeLocationUpdates(this);
-      (new SMSSender(recipient, location, false, false)).sendMessage();
+      (new SMSSender(recipient, location, false, null)).sendMessage();
     }
   }
 
@@ -137,7 +166,7 @@ public final class GPSSender {
       }
 
       Log.i(TAG, "Sending last known location from fused provider");
-      (new SMSSender(recipient, location, true, false)).sendMessage();
+      (new SMSSender(recipient, location, true, null)).sendMessage();
     }
   }
 
@@ -180,7 +209,8 @@ public final class GPSSender {
 
       Log.i(TAG, "Sending current location from system provider");
       provider.removeUpdates(this);
-      (new SMSSender(recipient, location, false, true)).sendMessage();
+      (new SMSSender(recipient, location, false, location.getProvider()))
+              .sendMessage();
     }
   }
 }
