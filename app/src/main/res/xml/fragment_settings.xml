@@ -62,7 +62,6 @@
     <PreferenceCategory android:title="@string/other_settings_label">
 
         <SwitchPreferenceCompat
-            android:enabled="false"
             android:key="@string/run_on_startup_enabled"
             android:summary="@string/run_on_startup_switch_summary"
             android:title="@string/run_on_startup_switch"

@@ -37,6 +37,8 @@ public final class Preferences {
                      DEFAULT_LOCATION_ACCURACY);
     editor.putString(context.getString(R.string.attempts_number),
                      DEFAULT_ATTEMPTS_NUMBER);
+    editor.putBoolean(context.getString(R.string.run_on_startup_enabled),
+                      true);
 
     if (areGooglePlayServicesAvailable(context)) {
       editor.putBoolean(context.getString(R.string.fused_enabled), true);
