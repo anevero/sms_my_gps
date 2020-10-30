@@ -1,6 +1,6 @@
 # SMS my GPS
 
-[![GitHub Actions Status](https://github.com/anevero/sms_my_gps/workflows/build/badge.svg)](https://github.com/anevero/sms_my_gps/actions)
+[![GitHub Actions Status](https://github.com/anevero/sms_my_gps/workflows/build/badge.svg?branch=master)](https://github.com/anevero/sms_my_gps/actions)
 
 This Android app is designed to automatically send SMS with your location as a
 reply to SMS with a specific prefix from a specific number. All you need is
