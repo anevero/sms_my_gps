@@ -1,5 +1,7 @@
 # SMS my GPS
 
+[![GitHub Actions Status](https://github.com/anevero/sms_my_gps/workflows/build/badge.svg?branch=master)](https://github.com/anevero/sms_my_gps/actions)
+
 This Android app is designed to automatically send SMS with your location as a
 reply to SMS with a specific prefix from a specific number. All you need is
 just to add necessary numbers and prefixes to the app, and it will
@@ -41,7 +43,8 @@ design guidelines. Night theme is also supported now.
 code has been rewritten. New activities have been implemented with new
 different features.
 - Choosing the location provider (between Google Location Services, system GPS
-provider, last known location from them) feature has been added.
+provider, system network provider, last known location from them) feature has
+been added.
 - Choosing the location accuracy and maximum requests number features have been
 added.
 - All the logic connected with listening to SMS broadcasts and sending the
