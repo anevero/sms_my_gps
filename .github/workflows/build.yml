@@ -16,13 +16,21 @@ jobs:
       with:
         java-version: 1.8
 
-    - name: Restore Gradle cache
+    - name: Cache gradle wrapper
+      uses: actions/cache@v2
+      env:
+        cache-name: gradle-wrapper-cache
+      with:
+        path: ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+
+    - name: Cache gradle files
       uses: actions/cache@v2
       env:
         cache-name: gradle-cache
       with:
-        path: ~/.gradle
-        key: ${{ runner.os }}-build-${{ env.cache-name }}
+        path: ~/.gradle/caches
+        key: ${{ runner.os }}-gradle-caches-${{ hashFiles('constants.gradle') }}
 
     - name: Set up Gradle script
       run: chmod +rwx ./gradlew
