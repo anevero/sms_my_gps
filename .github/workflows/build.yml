@@ -45,3 +45,9 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew assembleRelease --parallel --build-cache
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v2
+      with:
+        name: sms_my_gps_release.apk
+        path: "$GITHUB_WORKSPACE/app/build/outputs/apk/release/app-release.apk"
