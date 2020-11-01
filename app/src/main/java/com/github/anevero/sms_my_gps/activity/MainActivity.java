@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +20,7 @@ import com.github.anevero.sms_my_gps.data.ListItem;
 import com.github.anevero.sms_my_gps.data.Preferences;
 import com.github.anevero.sms_my_gps.events.ForegroundService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -199,8 +199,9 @@ public class MainActivity extends AppCompatActivity {
 
       if (itemId == -1) {
         if (ListItem.getMatch(listItems, sender) != null) {
-          Toast.makeText(this, R.string.item_already_added_warning,
-                         Toast.LENGTH_LONG).show();
+          Snackbar.make(findViewById(android.R.id.content),
+                        R.string.item_already_added_warning,
+                        Snackbar.LENGTH_LONG).show();
           return;
         }
         listItems.add(new ListItem(sender, ""));
