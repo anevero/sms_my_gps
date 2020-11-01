@@ -1,6 +1,6 @@
 name: build
 
-on: push
+on: [push, pull_request]
 
 jobs:
   build:
@@ -15,6 +15,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+
+    - name: Decode signing config
+      shell: bash
+      run: echo "${{secrets.SIGNING_CONFIG}}" | base64 --decode > "$GITHUB_WORKSPACE/signing_config.gradle"
+
+    - name: Decode signing key
+      shell: bash
+      run: echo "${{secrets.SIGNING_KEY}}" | base64 --decode > "$GITHUB_WORKSPACE/signing_key.jks"
 
     - name: Cache gradle wrapper
       uses: actions/cache@v2
@@ -37,3 +45,9 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew assembleRelease --parallel --build-cache
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v2
+      with:
+        name: app-release.apk
+        path: ${{github.workspace}}/app/build/outputs/apk/release/app-release.apk
