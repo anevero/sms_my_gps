@@ -11,6 +11,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 
@@ -19,6 +20,7 @@ import com.github.anevero.sms_my_gps.data.Constants;
 import com.github.anevero.sms_my_gps.data.ListItem;
 import com.github.anevero.sms_my_gps.data.Preferences;
 import com.github.anevero.sms_my_gps.events.ForegroundService;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -35,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    Preferences.initPreferences(this);
+    AppCompatDelegate.setDefaultNightMode(Preferences.getTheme(this));
+
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
-    Preferences.initPreferences(this);
 
     enableServiceSwitch = findViewById(R.id.enable_service_switch);
     updateServiceSwitchStatus();

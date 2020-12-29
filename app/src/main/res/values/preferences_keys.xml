@@ -5,8 +5,6 @@
     <string name="service_enabled">service_enabled</string>
     <string name="list_items">list_items</string>
 
-    <string name="run_on_startup_enabled">run_on_startup_enabled</string>
-
     <string name="fused_enabled">fused_enabled</string>
     <string name="fused_last_known_enabled">fused_last_known_enabled</string>
     <string name="system_gps_enabled">system_gps_enabled</string>
@@ -16,5 +14,11 @@
 
     <string name="location_accuracy">location_accuracy</string>
     <string name="attempts_number">attempts_number</string>
+
+    <string name="run_on_startup_enabled">run_on_startup_enabled</string>
+    <string name="app_theme">app_theme</string>
+    <string name="app_theme_system">app_theme_system</string>
+    <string name="app_theme_light">app_theme_light</string>
+    <string name="app_theme_dark">app_theme_dark</string>
 
 </resources>

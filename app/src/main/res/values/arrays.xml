@@ -37,4 +37,16 @@
         <item>120</item>
     </string-array>
 
+    <string-array name="app_theme_entries">
+        <item>@string/app_theme_system_option</item>
+        <item>@string/app_theme_light_option</item>
+        <item>@string/app_theme_dark_option</item>
+    </string-array>
+
+    <string-array name="app_theme_values">
+        <item>@string/app_theme_system</item>
+        <item>@string/app_theme_light</item>
+        <item>@string/app_theme_dark</item>
+    </string-array>
+
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Версия 3.4.6 (35)</string>
+    <string name="app_version">Версия 3.4.7 (36)</string>
 
     <string name="add_item">Добавить запись</string>
     <string name="edit_item">Редактировать запись</string>
@@ -62,5 +62,9 @@
     <string name="attempts_number_dropdown">Максимальное количество запросов</string>
     <string name="run_on_startup_switch">Запускать после загрузки системы</string>
     <string name="run_on_startup_switch_summary">Если сервис активирован, он будет автоматически запущен после перезагрузки системы.</string>
+    <string name="app_theme_dropdown">Тема приложения</string>
+    <string name="app_theme_system_option">Системная</string>
+    <string name="app_theme_light_option">Светлая</string>
+    <string name="app_theme_dark_option">Темная</string>
 
 </resources>

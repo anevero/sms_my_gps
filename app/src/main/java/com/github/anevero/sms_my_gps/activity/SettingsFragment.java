@@ -1,7 +1,9 @@
 package com.github.anevero.sms_my_gps.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.DropDownPreference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
@@ -9,7 +11,8 @@ import androidx.preference.SwitchPreferenceCompat;
 import com.github.anevero.sms_my_gps.R;
 import com.github.anevero.sms_my_gps.data.Preferences;
 
-public class SettingsFragment extends PreferenceFragmentCompat {
+public class SettingsFragment extends PreferenceFragmentCompat implements
+        SharedPreferences.OnSharedPreferenceChangeListener {
   private SwitchPreferenceCompat fusedSwitch;
   private SwitchPreferenceCompat fusedLastKnownSwitch;
   private SwitchPreferenceCompat systemGpsSwitch;
@@ -21,9 +24,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
   private DropDownPreference attemptsNumberPreference;
 
   private SwitchPreferenceCompat runOnStartupSwitch;
+  private DropDownPreference appThemeDropdown;
 
   @Override
   public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    AppCompatDelegate.setDefaultNightMode(Preferences.getTheme(getActivity()));
     setPreferencesFromResource(R.xml.fragment_settings, rootKey);
 
     fusedSwitch = getPreferenceScreen().findPreference(
@@ -46,6 +51,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     runOnStartupSwitch = getPreferenceScreen().findPreference(
             getString(R.string.run_on_startup_enabled));
+    appThemeDropdown = getPreferenceScreen().findPreference("app_theme");
 
     fusedSwitch.setSingleLineTitle(false);
     fusedLastKnownSwitch.setSingleLineTitle(false);
@@ -58,10 +64,34 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     attemptsNumberPreference.setSingleLineTitle(false);
 
     runOnStartupSwitch.setSingleLineTitle(false);
+    appThemeDropdown.setSingleLineTitle(false);
 
     if (!Preferences.areGooglePlayServicesAvailable(getActivity())) {
       fusedSwitch.setEnabled(false);
       fusedLastKnownSwitch.setEnabled(false);
     }
+  }
+
+  @Override
+  public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+                                        String key) {
+    if (key.equals(getString(R.string.app_theme))) {
+      AppCompatDelegate
+              .setDefaultNightMode(Preferences.getTheme(getActivity()));
+    }
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    getPreferenceManager().getSharedPreferences()
+                          .registerOnSharedPreferenceChangeListener(this);
+  }
+
+  @Override
+  public void onPause() {
+    getPreferenceManager().getSharedPreferences()
+                          .unregisterOnSharedPreferenceChangeListener(this);
+    super.onPause();
   }
 }

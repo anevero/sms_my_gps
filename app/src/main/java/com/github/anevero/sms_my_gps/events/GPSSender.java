@@ -11,6 +11,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.github.anevero.sms_my_gps.data.Preferences;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationCallback;
