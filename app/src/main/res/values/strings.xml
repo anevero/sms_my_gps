@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SMS my GPS</string>
-    <string name="app_version">Version 3.4.6 (35)</string>
+    <string name="app_version">Version 3.4.7 (36)</string>
 
     <string name="add_item">Add item</string>
     <string name="edit_item">Edit item</string>
@@ -62,5 +62,9 @@
     <string name="attempts_number_dropdown">Maximum location requests number</string>
     <string name="run_on_startup_switch">Run on system startup</string>
     <string name="run_on_startup_switch_summary">If the service is enabled, it will start automatically after system restart.</string>
+    <string name="app_theme_dropdown">App theme</string>
+    <string name="app_theme_system_option">System</string>
+    <string name="app_theme_light_option">Light</string>
+    <string name="app_theme_dark_option">Dark</string>
 
 </resources>

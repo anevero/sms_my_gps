@@ -13,9 +13,12 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.github.anevero.sms_my_gps.R;
 import com.github.anevero.sms_my_gps.data.Constants;
+import com.github.anevero.sms_my_gps.data.Preferences;
+
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
@@ -32,6 +35,7 @@ public class EditItemActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    AppCompatDelegate.setDefaultNightMode(Preferences.getTheme(this));
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_edit_item);
     Objects.requireNonNull(getSupportActionBar())

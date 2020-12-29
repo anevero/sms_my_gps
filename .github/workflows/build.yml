@@ -24,7 +24,7 @@ jobs:
       shell: bash
       run: echo "${{secrets.SIGNING_KEY}}" | base64 --decode > "$GITHUB_WORKSPACE/signing_key.jks"
 
-    - name: Cache gradle wrapper
+    - name: Cache gradle-wrapper
       uses: actions/cache@v2
       env:
         cache-name: gradle-wrapper-cache
@@ -32,7 +32,7 @@ jobs:
         path: ~/.gradle/wrapper
         key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
-    - name: Cache gradle files
+    - name: Cache gradle-cache
       uses: actions/cache@v2
       env:
         cache-name: gradle-cache
@@ -40,10 +40,10 @@ jobs:
         path: ~/.gradle/caches
         key: ${{ runner.os }}-gradle-caches-${{ hashFiles('constants.gradle') }}
 
-    - name: Set up Gradle script
+    - name: Allow executing gradlew
       run: chmod +rwx ./gradlew
 
-    - name: Build with Gradle
+    - name: Build
       run: ./gradlew assembleRelease --parallel --build-cache
     
     - name: Upload APK

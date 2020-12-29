@@ -67,6 +67,13 @@
             android:title="@string/run_on_startup_switch"
             app:useSimpleSummaryProvider="true" />
 
+        <DropDownPreference
+            android:entries="@array/app_theme_entries"
+            android:entryValues="@array/app_theme_values"
+            android:key="@string/app_theme"
+            android:title="@string/app_theme_dropdown"
+            app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -5,7 +5,10 @@ import android.content.SharedPreferences;
 import android.location.LocationManager;
 import android.preference.PreferenceManager;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.github.anevero.sms_my_gps.R;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
@@ -39,6 +42,8 @@ public final class Preferences {
                      DEFAULT_ATTEMPTS_NUMBER);
     editor.putBoolean(context.getString(R.string.run_on_startup_enabled),
                       true);
+    editor.putString(context.getString(R.string.app_theme),
+                     context.getString(R.string.app_theme_system));
 
     if (areGooglePlayServicesAvailable(context)) {
       editor.putBoolean(context.getString(R.string.fused_enabled), true);
@@ -89,10 +94,6 @@ public final class Preferences {
     editor.apply();
   }
 
-  public static boolean isRunOnStartupEnabled(Context context) {
-    return isOptionEnabled(context, R.string.run_on_startup_enabled);
-  }
-
   public static boolean isFusedLocationEnabled(Context context) {
     return isOptionEnabled(context, R.string.fused_enabled);
   }
@@ -130,5 +131,26 @@ public final class Preferences {
     return Integer.parseInt(Objects.requireNonNull(preferences.getString(
             context.getString(R.string.attempts_number),
             DEFAULT_ATTEMPTS_NUMBER)));
+  }
+
+  public static boolean isRunOnStartupEnabled(Context context) {
+    return isOptionEnabled(context, R.string.run_on_startup_enabled);
+  }
+
+  public static int getTheme(Context context) {
+    SharedPreferences preferences =
+            PreferenceManager.getDefaultSharedPreferences(context);
+    String mode = preferences.getString(
+            context.getString(R.string.app_theme),
+            context.getString(R.string.app_theme_system));
+    assert mode != null;
+    if (mode.equals(context.getString(R.string.app_theme_system))) {
+      return AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+    } else if (mode.equals(context.getString(R.string.app_theme_light))) {
+      return AppCompatDelegate.MODE_NIGHT_NO;
+    } else if (mode.equals(context.getString(R.string.app_theme_dark))) {
+      return AppCompatDelegate.MODE_NIGHT_YES;
+    }
+    return AppCompatDelegate.MODE_NIGHT_UNSPECIFIED;
   }
 }
