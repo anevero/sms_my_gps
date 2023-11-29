@@ -46,10 +46,20 @@ public final class ListItem {
     return (new Gson()).toJson(arrayList);
   }
 
+  private static boolean senderMatches(ListItem item, String sender) {
+    if (item.sender.charAt(0) == '0') {
+      // Ignore the leading '0' to allow matching "sender", which is
+      // supplied with the appropriate country code.
+      return sender.endsWith(item.sender.substring(1));
+    } else {
+      return sender.endsWith(item.sender);
+    }
+  }
+
   public static ListItem getMatch(ArrayList<ListItem> listItems,
                                   String sender) {
     for (ListItem item : listItems) {
-      if (sender.endsWith(item.sender)) {
+      if (senderMatches(item, sender)) {
         return item;
       }
     }
@@ -60,7 +70,7 @@ public final class ListItem {
   public static ListItem getMatch(ArrayList<ListItem> listItems,
                                   String sender, String message) {
     for (ListItem item : listItems) {
-      if (sender.endsWith(item.sender) &&
+      if (senderMatches(item, sender) &&
           message.startsWith(item.messagePrefix)) {
         return item;
       }
